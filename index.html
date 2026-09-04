@@ -1,11 +1,299 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Polairs</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Polairs — Unlock You</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6fbf7;
+      color: #006b3c;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 70px;
+      margin-bottom: 10px;
+      font-family: Georgia, serif;
+      color: #006b3c;
+    }
+
+    .hero .tagline {
+      font-size: 18px;
+      letter-spacing: 5px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      color: #174d35;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #496358;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #006b3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #006b3c;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: auto;
+      color: #596b61;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 280px;
+      box-shadow: 0 8px 25px rgba(0, 80, 40, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: #006b3c;
+    }
+
+    .card p {
+      font-size: 15px;
+    }
+
+    .highlight {
+      background: #e8f5e9;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background: #006b3c;
+      color: white;
+    }
+
+    footer p {
+      color: white;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Welcome to Polairs 🌷</h1>
-  <p>Helping teenagers grow, learn, and become their best selves.</p>
+
+  <header>
+    <div class="hero">
+
+      <h1>Polairs</h1>
+
+      <div class="tagline">UNLOCK YOU</div>
+
+      <h2>Grow into the person you want to become.</h2>
+
+      <p>
+        Polairs is a digital self-development platform designed to help
+        teenagers build healthier habits, improve academically, and grow
+        personally — one step at a time.
+      </p>
+
+      <a href="#about" class="button">Explore Polairs</a>
+
+    </div>
+  </header>
+
+
+  <section id="about">
+    <h2>The Problem</h2>
+
+    <p>
+      Being a teenager today can feel overwhelming. Between school,
+      expectations, social pressure, and trying to figure yourself out,
+      it can be difficult to know where to start.
+    </p>
+  </section>
+
+
+  <section class="highlight">
+    <h2>Our Solution</h2>
+
+    <p>
+      Polairs brings personal growth, academic support, and habit building
+      into one simple digital space made specifically for teenagers.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>🌱 Personal Growth</h3>
+        <p>
+          Tools that encourage self-awareness, confidence, and continuous growth.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>📚 Academic Success</h3>
+        <p>
+          Support teenagers in becoming more organized and intentional about learning.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>✨ Better Habits</h3>
+        <p>
+          Simple systems that help turn small actions into meaningful habits.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section>
+    <h2>How Polairs Works</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>01 — Understand</h3>
+        <p>
+          Discover your goals, challenges, and areas where you want to improve.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>02 — Build</h3>
+        <p>
+          Create practical habits and routines that fit your everyday life.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>03 — Grow</h3>
+        <p>
+          Track your progress and keep becoming a better version of yourself.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="highlight">
+    <h2>Built With Teenagers in Mind</h2>
+
+    <p>
+      Polairs started as an MVP and was tested with teenagers to understand
+      what they actually need from a self-development platform.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>30+ Test Users</h3>
+        <p>
+          Early beta testing helped us collect feedback and improve the idea.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🏆 1st Place</h3>
+        <p>
+          Polairs won first place at the Greater Cairo Youth Science Fair.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🚀 Growing</h3>
+        <p>
+          We are now working toward turning the prototype into a stronger,
+          scalable product.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section>
+    <h2>Our Vision</h2>
+
+    <p>
+      We believe every teenager has potential that is waiting to be unlocked.
+      Polairs aims to make personal growth feel less overwhelming,
+      more practical, and more accessible.
+    </p>
+  </section>
+
+
+  <footer>
+    <p>© 2026 Polairs — Unlock You 🌿</p>
+  </footer>
+
 </body>
 </html>
