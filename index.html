@@ -1,1002 +1,3158 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Polairs — Unlock You</title>
-
-  <style>
-    :root {
-      --green: #006b3c;
-      --dark-green: #174d35;
-      --light-green: #e8f5e9;
-      --background: #f6fbf7;
-      --white: #ffffff;
-      --text: #263b31;
-      --muted: #687970;
-      --border: #dce9e1;
-      --shadow: 0 10px 30px rgba(0, 80, 40, 0.08);
-    }
-
-    body.dark {
-      --background: #101914;
-      --white: #17221c;
-      --text: #edf7f0;
-      --muted: #a9bbb0;
-      --border: #2c3d33;
-      --light-green: #1c3025;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--background);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* NAVBAR */
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 16px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(246, 251, 247, 0.9);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-    }
-
-    body.dark nav {
-      background: rgba(16, 25, 20, 0.9);
-    }
-
-    .logo {
-      font-family: Georgia, serif;
-      font-size: 28px;
-      font-weight: bold;
-      color: var(--green);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .nav-links a:hover {
-      color: var(--green);
-    }
-
-    .theme-btn {
-      border: none;
-      background: var(--light-green);
-      padding: 9px 13px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 17px;
-    }
-
-    /* HERO */
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 20px 70px;
-    }
-
-    .hero {
-      max-width: 850px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--light-green);
-      color: var(--green);
-      padding: 8px 16px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: 80px;
-      margin-bottom: 5px;
-      font-family: Georgia, serif;
-      color: var(--green);
-    }
-
-    .tagline {
-      font-size: 15px;
-      letter-spacing: 6px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
-
-    .hero h2 {
-      font-size: 44px;
-      color: var(--dark-green);
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 19px;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto 30px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 14px 28px;
-      background: var(--green);
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 107, 60, 0.2);
-    }
-
-    .button.secondary {
-      background: var(--light-green);
-      color: var(--green);
-    }
-
-    /* GENERAL */
-
-    section {
-      padding: 90px 7%;
-      text-align: center;
-    }
-
-    section h2 {
-      font-size: 38px;
-      margin-bottom: 15px;
-      color: var(--green);
-    }
-
-    .section-intro {
-      max-width: 700px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .highlight {
-      background: var(--light-green);
-    }
-
-    /* CARDS */
-
-    .cards {
-      display: flex;
-      gap: 22px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: var(--white);
-      padding: 30px;
-      border-radius: 22px;
-      width: 290px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      transition: transform 0.25s;
-      text-align: left;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-    }
-
-    .card-icon {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: var(--green);
-    }
-
-    .card p {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    /* DASHBOARD */
-
-    .dashboard {
-      max-width: 1000px;
-      margin: 45px auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .stat {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: var(--shadow);
-    }
-
-    .stat-number {
-      font-size: 36px;
-      font-weight: bold;
-      color: var(--green);
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* HABITS */
-
-    .habit-container {
-      max-width: 800px;
-      margin: 40px auto 0;
-      background: var(--white);
-      border-radius: 25px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      text-align: left;
-    }
-
-    .habit {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .habit:last-child {
-      border-bottom: none;
-    }
-
-    .habit-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .habit input {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--green);
-      cursor: pointer;
-    }
-
-    .completed {
-      text-decoration: line-through;
-      opacity: 0.5;
-    }
-
-    /* MOOD */
-
-    .mood-box {
-      max-width: 700px;
-      margin: 40px auto 0;
-      background: var(--white);
-      padding: 35px;
-      border-radius: 25px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .moods {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 25px;
-    }
-
-    .mood {
-      border: 2px solid var(--border);
-      background: var(--white);
-      border-radius: 18px;
-      padding: 15px 20px;
-      cursor: pointer;
-      font-size: 28px;
-      transition: 0.2s;
-    }
-
-    .mood:hover,
-    .mood.selected {
-      border-color: var(--green);
-      transform: scale(1.08);
-    }
-
-    #moodMessage {
-      margin-top: 20px;
-      color: var(--green);
-      font-weight: bold;
-    }
-
-    /* GOALS */
-
-    .goal-box {
-      max-width: 750px;
-      margin: 40px auto 0;
-      display: flex;
-      gap: 10px;
-    }
-
-    .goal-box input {
-      flex: 1;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--text);
-      outline: none;
-    }
-
-    .goal-list {
-      max-width: 750px;
-      margin: 20px auto;
-      text-align: left;
-    }
-
-    .goal {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 15px 20px;
-      border-radius: 15px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .delete {
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    /* MOTIVATION */
-
-    .quote {
-      max-width: 750px;
-      margin: 35px auto 0;
-      background: var(--green);
-      color: white;
-      padding: 40px;
-      border-radius: 25px;
-      font-family: Georgia, serif;
-      font-size: 24px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 45px 20px;
-      text-align: center;
-      background: var(--green);
-      color: white;
-    }
-
-    footer p {
-      color: white;
-      font-size: 14px;
-    }
-
-    /* ANIMATION */
-
-    .fade {
-      animation: fadeUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 58px;
-      }
-
-      .hero h2 {
-        font-size: 32px;
-      }
-
-      .hero p {
-        font-size: 17px;
-      }
-
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-
-      .goal-box {
-        flex-direction: column;
-      }
-
-      section {
-        padding: 70px 20px;
-      }
-    }
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polairs — Unlock You</title>
+
+<style>
+:root{
+  --bg:#f7faf7;
+  --card:#ffffff;
+  --text:#20352c;
+  --muted:#718078;
+  --primary:#5f8f78;
+  --primary-dark:#456e5b;
+  --soft:#e8f1eb;
+  --border:#e1e9e4;
+  --danger:#d96c6c;
+  --shadow:0 12px 35px rgba(40,70,55,.08);
+  --radius:20px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:245px;
+  background:var(--card);
+  border-right:1px solid var(--border);
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  padding:28px 18px;
+  z-index:50;
+  display:flex;
+  flex-direction:column;
+}
+
+.logo{
+  padding:0 12px 30px;
+}
+
+.logo h1{
+  font-family:Georgia,serif;
+  font-size:30px;
+  color:var(--primary-dark);
+}
+
+.logo span{
+  display:block;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin-top:-4px;
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  text-align:left;
+  padding:12px 14px;
+  border-radius:12px;
+  color:var(--muted);
+  transition:.2s;
+  font-weight:600;
+}
+
+.nav button:hover{
+  background:var(--soft);
+  color:var(--primary-dark);
+}
+
+.nav button.active{
+  background:var(--soft);
+  color:var(--primary-dark);
+}
+
+.nav-icon{
+  width:24px;
+  display:inline-block;
+}
+
+.sidebar-bottom{
+  margin-top:auto;
+}
+
+.premium-mini{
+  background:linear-gradient(135deg,#e8f2eb,#f5f0df);
+  padding:16px;
+  border-radius:18px;
+  margin-bottom:12px;
+}
+
+.premium-mini strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.premium-mini p{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+/* MAIN */
+
+.main{
+  margin-left:245px;
+  width:calc(100% - 245px);
+  padding:35px 45px 70px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:35px;
+}
+
+.page-title h2{
+  font-size:27px;
+}
+
+.page-title p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon-btn{
+  border:1px solid var(--border);
+  background:var(--card);
+  width:42px;
+  height:42px;
+  border-radius:12px;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  background:var(--soft);
+  color:var(--primary-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-weight:700;
+}
+
+/* GENERAL */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:23px;
+  box-shadow:var(--shadow);
+}
+
+.grid{
+  display:grid;
+  gap:20px;
+}
+
+.grid-2{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.grid-4{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:11px 17px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn-primary:hover{
+  background:var(--primary-dark);
+  transform:translateY(-1px);
+}
+
+.btn-secondary{
+  background:var(--soft);
+  color:var(--primary-dark);
+}
+
+.btn-outline{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text);
+}
+
+.btn-danger{
+  background:#fff0f0;
+  color:var(--danger);
+}
+
+.small{
+  font-size:12px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.section-heading h3{
+  font-size:19px;
+}
+
+/* DASHBOARD HERO */
+
+.welcome{
+  background:linear-gradient(135deg,#dcece3,#f4f5ed);
+  border-radius:26px;
+  padding:32px;
+  margin-bottom:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  overflow:hidden;
+}
+
+.welcome h1{
+  font-family:Georgia,serif;
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.welcome p{
+  color:#61736a;
+  max-width:560px;
+}
+
+.welcome-art{
+  font-size:80px;
+  opacity:.75;
+}
+
+/* STATS */
+
+.stat-card{
+  padding:20px;
+}
+
+.stat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stat-icon{
+  font-size:23px;
+}
+
+.stat-number{
+  font-size:28px;
+  font-weight:800;
+  margin-top:12px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* PROGRESS */
+
+.progress{
+  height:8px;
+  background:#edf1ee;
+  border-radius:50px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:var(--primary);
+  border-radius:50px;
+  transition:.3s;
+}
+
+/* DAILY PLAN */
+
+.plan-item{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.plan-item:last-child{
+  border-bottom:0;
+}
+
+.plan-check{
+  width:22px;
+  height:22px;
+  border:2px solid #bfd0c6;
+  border-radius:7px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.plan-check.done{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:white;
+}
+
+.plan-text{
+  flex:1;
+}
+
+.plan-text strong{
+  display:block;
+  font-size:14px;
+}
+
+.plan-text span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* HABITS */
+
+.habit{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.habit:last-child{
+  border-bottom:0;
+}
+
+.habit-circle{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  border:2px solid transparent;
+  flex-shrink:0;
+}
+
+.habit-circle.done{
+  background:var(--primary);
+  color:white;
+}
+
+.habit-info{
+  flex:1;
+}
+
+.habit-info strong{
+  display:block;
+}
+
+.habit-info span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.streak{
+  font-size:12px;
+  font-weight:700;
+  color:var(--primary-dark);
+}
+
+/* GOALS */
+
+.goal{
+  position:relative;
+}
+
+.goal-category{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--primary-dark);
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:13px;
+}
+
+.goal h4{
+  font-size:17px;
+  margin-bottom:5px;
+}
+
+.goal p{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.goal-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
+.goal-actions{
+  margin-top:15px;
+  display:flex;
+  gap:7px;
+}
+
+/* TASKS */
+
+.task{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.task:last-child{
+  border-bottom:0;
+}
+
+.task-check{
+  width:21px;
+  height:21px;
+  border:2px solid #c3d0c8;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.task-check.done{
+  background:var(--primary);
+  border-color:var(--primary);
+}
+
+.task-content{
+  flex:1;
+}
+
+.task-content strong{
+  display:block;
+}
+
+.task-content span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.subject{
+  font-size:11px;
+  background:var(--soft);
+  padding:4px 8px;
+  border-radius:7px;
+  color:var(--primary-dark);
+}
+
+/* MOOD */
+
+.moods{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin:20px 0;
+}
+
+.mood{
+  flex:1;
+  border:1px solid var(--border);
+  background:white;
+  border-radius:15px;
+  padding:13px 5px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.mood:hover,
+.mood.selected{
+  background:var(--soft);
+  border-color:var(--primary);
+  transform:translateY(-2px);
+}
+
+.mood span{
+  display:block;
+  font-size:27px;
+}
+
+.mood small{
+  color:var(--muted);
+}
+
+/* JOURNAL */
+
+textarea{
+  width:100%;
+  min-height:220px;
+  resize:vertical;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+  outline:none;
+  color:var(--text);
+  background:#fcfdfc;
+}
+
+textarea:focus,
+input:focus,
+select:focus{
+  border-color:var(--primary);
+}
+
+.input-group{
+  margin-bottom:15px;
+}
+
+.input-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.input-group input,
+.input-group select{
+  width:100%;
+  padding:11px 13px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  outline:none;
+  background:white;
+}
+
+/* JOURNEY */
+
+.timeline{
+  position:relative;
+  padding-left:30px;
+}
+
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:5px;
+  bottom:5px;
+  width:2px;
+  background:var(--border);
+}
+
+.timeline-item{
+  position:relative;
+  padding-bottom:27px;
+}
+
+.timeline-dot{
+  position:absolute;
+  left:-28px;
+  top:2px;
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  background:var(--primary);
+  border:4px solid var(--soft);
+}
+
+.timeline-item h4{
+  font-size:15px;
+}
+
+.timeline-item p{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* PREMIUM */
+
+.premium-hero{
+  background:linear-gradient(135deg,#253c32,#4d735e);
+  color:white;
+  border-radius:25px;
+  padding:35px;
+  margin-bottom:25px;
+}
+
+.premium-hero h2{
+  font-family:Georgia,serif;
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.premium-hero p{
+  color:#dce9e0;
+  max-width:650px;
+}
+
+.premium-badge{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  padding:6px 11px;
+  border-radius:20px;
+  font-size:11px;
+  margin-bottom:14px;
+}
+
+.feature{
+  padding:20px;
+}
+
+.feature-icon{
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.feature h4{
+  margin-bottom:5px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.locked{
+  position:relative;
+  overflow:hidden;
+}
+
+.locked-content{
+  filter:blur(3px);
+  opacity:.55;
+}
+
+.lock-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,.68);
+  text-align:center;
+  padding:20px;
+}
+
+/* AI GUIDE */
+
+.ai-box{
+  background:#f5f8f5;
+  border-radius:18px;
+  padding:20px;
+  margin-top:15px;
+}
+
+.chat-message{
+  padding:13px 15px;
+  border-radius:15px;
+  margin-bottom:10px;
+  max-width:85%;
+  font-size:14px;
+}
+
+.ai{
+  background:white;
+  border:1px solid var(--border);
+}
+
+.user{
+  background:var(--soft);
+  margin-left:auto;
+}
+
+/* MODAL */
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(25,40,33,.48);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+
+.modal-backdrop.show{
+  display:flex;
+}
+
+.modal{
+  width:min(520px,100%);
+  background:white;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 25px 70px rgba(0,0,0,.2);
+  max-height:90vh;
+  overflow:auto;
+}
+
+.modal h3{
+  font-size:22px;
+  margin-bottom:7px;
+}
+
+.modal > p{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+/* ONBOARDING */
+
+.onboarding{
+  text-align:center;
+}
+
+.onboarding .flower{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.onboarding h2{
+  font-family:Georgia,serif;
+  font-size:29px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:#263b31;
+  color:white;
+  padding:13px 18px;
+  border-radius:12px;
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+  z-index:200;
+  font-size:13px;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* MOBILE */
+
+.mobile-header{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:210px;
+  }
+
+  .main{
+    margin-left:210px;
+    width:calc(100% - 210px);
+    padding:25px;
+  }
+
+  .grid-4{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid-3{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:700px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:18px;
+    padding-top:75px;
+  }
+
+  .mobile-header{
+    position:fixed;
+    display:flex;
+    top:0;
+    left:0;
+    right:0;
+    height:60px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    z-index:60;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+  }
+
+  .mobile-logo{
+    font-family:Georgia,serif;
+    font-size:23px;
+    color:var(--primary-dark);
+  }
+
+  .topbar{
+    margin-bottom:20px;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4{
+    grid-template-columns:1fr;
+  }
+
+  .welcome{
+    padding:24px;
+  }
+
+  .welcome h1{
+    font-size:27px;
+  }
+
+  .welcome-art{
+    display:none;
+  }
+
+  .moods{
+    flex-wrap:wrap;
+  }
+
+  .mood{
+    min-width:28%;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+<div class="app">
 
-  <nav>
-    <div class="logo">Polairs 🌱</div>
-
-```
-<div class="nav-links">
-  <a href="#about">About</a>
-  <a href="#dashboard">Dashboard</a>
-  <a href="#habits">Habits</a>
-  <a href="#goals">Goals</a>
-  <a href="#mood">Well-being</a>
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
+  <div class="mobile-logo">Polairs 🌷</div>
+  <button class="icon-btn" onclick="toggleDarkMode()">☾</button>
 </div>
 
-<button class="theme-btn" onclick="toggleTheme()">🌙</button>
-```
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="logo">
+    <h1>Polairs</h1>
+    <span>UNLOCK YOU</span>
+  </div>
+
+  <nav class="nav">
+
+    <button class="active" onclick="showSection('dashboard',this)">
+      <span class="nav-icon">⌂</span> Dashboard
+    </button>
+
+    <button onclick="showSection('goals',this)">
+      <span class="nav-icon">🎯</span> My Goals
+    </button>
+
+    <button onclick="showSection('habits',this)">
+      <span class="nav-icon">✓</span> Habits
+    </button>
+
+    <button onclick="showSection('study',this)">
+      <span class="nav-icon">📚</span> Study
+    </button>
+
+    <button onclick="showSection('wellbeing',this)">
+      <span class="nav-icon">🌱</span> Well-being
+    </button>
+
+    <button onclick="showSection('journal',this)">
+      <span class="nav-icon">📖</span> Journal
+    </button>
+
+    <button onclick="showSection('journey',this)">
+      <span class="nav-icon">🧭</span> My Journey
+    </button>
+
+    <button onclick="showSection('premium',this)">
+      <span class="nav-icon">✦</span> Premium
+    </button>
 
   </nav>
 
-  <!-- HERO -->
+  <div class="sidebar-bottom">
 
-  <header>
+    <div class="premium-mini">
+      <strong>✨ Unlock more</strong>
+      <p>Get your personalized growth experience with Polairs Premium.</p>
+      <button class="btn btn-primary" style="width:100%" onclick="showSectionByName('premium')">
+        Explore Premium
+      </button>
+    </div>
 
-```
-<div class="hero fade">
+    <button class="nav" style="border:0;background:transparent;width:100%;text-align:left;padding:12px;color:var(--muted)" onclick="editProfile()">
+      ⚙️ Settings
+    </button>
 
-  <div class="hero-badge">
-    🌱 A space to grow at your own pace
   </div>
 
-  <h1>Polairs</h1>
+</aside>
 
-  <div class="tagline">
-    UNLOCK YOU
-  </div>
 
-  <h2>
-    Grow into the person you want to become.
-  </h2>
+<main class="main">
 
-  <p>
-    A digital self-development space designed for teenagers
-    to build healthier habits, reach their goals, improve academically,
-    and understand themselves better — one small step at a time.
-  </p>
+<!-- DASHBOARD -->
 
-  <a href="#dashboard" class="button">
-    Start Your Journey
-  </a>
+<section id="dashboard" class="section active">
 
-</div>
-```
+  <div class="topbar">
 
-  </header>
+    <div class="page-title">
+      <h2>Dashboard</h2>
+      <p>Your little space to grow 🌷</p>
+    </div>
 
-  <!-- ABOUT -->
-
-  <section id="about">
-
-```
-<h2>Growing up is complicated.</h2>
-
-<p class="section-intro">
-  Teenagers are expected to study, succeed, make decisions,
-  build relationships, and figure themselves out — sometimes all at once.
-  Polairs turns that overwhelming feeling into small, manageable steps.
-</p>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="card-icon">🌱</div>
-    <h3>Personal Growth</h3>
-    <p>
-      Understand yourself, build confidence, and develop healthier
-      ways of dealing with everyday challenges.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="card-icon">📚</div>
-    <h3>Academic Life</h3>
-    <p>
-      Turn large academic goals into realistic tasks and routines
-      that make studying feel more manageable.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="card-icon">✨</div>
-    <h3>Better Habits</h3>
-    <p>
-      Build consistency through small actions rather than trying
-      to completely change your life overnight.
-    </p>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- DASHBOARD -->
-
-  <section id="dashboard" class="highlight">
-
-```
-<h2>Your Growth Dashboard</h2>
-
-<p class="section-intro">
-  Your progress doesn't have to be perfect.
-  It just has to keep moving.
-</p>
-
-<div class="dashboard">
-
-  <div class="stat">
-    <div class="stat-number" id="habitCount">0</div>
-    <div class="stat-label">Habits completed today</div>
-  </div>
-
-  <div class="stat">
-    <div class="stat-number" id="goalCount">0</div>
-    <div class="stat-label">Goals created</div>
-  </div>
-
-  <div class="stat">
-    <div class="stat-number" id="streakCount">0</div>
-    <div class="stat-label">Day streak 🔥</div>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- HABITS -->
-
-  <section id="habits">
-
-```
-<h2>Today's Habits</h2>
-
-<p class="section-intro">
-  Don't focus on changing everything.
-  Choose a few small things you can actually repeat.
-</p>
-
-<div class="habit-container">
-
-  <div class="habit">
-
-    <div class="habit-left">
-      <input type="checkbox" onchange="completeHabit(this)">
-      <span>Drink enough water 💧</span>
+    <div class="top-actions">
+      <button class="icon-btn" onclick="toggleDarkMode()">☾</button>
+      <div class="avatar" id="avatar">M</div>
     </div>
 
   </div>
 
-  <div class="habit">
 
-    <div class="habit-left">
-      <input type="checkbox" onchange="completeHabit(this)">
-      <span>Study for 30 minutes 📚</span>
+  <div class="welcome">
+
+    <div>
+      <h1 id="welcomeTitle">Good morning 🌷</h1>
+      <p id="welcomeText">
+        You don't have to become a completely different person.
+        Just keep becoming a little more you.
+      </p>
+
+      <button class="btn btn-primary" style="margin-top:18px" onclick="showSectionByName('goals')">
+        Continue my journey →
+      </button>
+    </div>
+
+    <div class="welcome-art">🌱</div>
+
+  </div>
+
+
+  <div class="grid grid-4" style="margin-bottom:22px">
+
+    <div class="card stat-card">
+      <div class="stat-top">
+        <span class="muted small">Goals</span>
+        <span class="stat-icon">🎯</span>
+      </div>
+      <div class="stat-number" id="goalStat">0</div>
+      <div class="stat-label">active goals</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-top">
+        <span class="muted small">Habits</span>
+        <span class="stat-icon">✓</span>
+      </div>
+      <div class="stat-number" id="habitStat">0%</div>
+      <div class="stat-label">completed today</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-top">
+        <span class="muted small">Study</span>
+        <span class="stat-icon">📚</span>
+      </div>
+      <div class="stat-number" id="studyStat">0</div>
+      <div class="stat-label">tasks completed</div>
+    </div>
+
+    <div class="card stat-card">
+      <div class="stat-top">
+        <span class="muted small">Journey</span>
+        <span class="stat-icon">🌱</span>
+      </div>
+      <div class="stat-number" id="journeyStat">0%</div>
+      <div class="stat-label">overall progress</div>
     </div>
 
   </div>
 
-  <div class="habit">
 
-    <div class="habit-left">
-      <input type="checkbox" onchange="completeHabit(this)">
-      <span>Move your body for 10 minutes 🧘</span>
+  <div class="grid grid-2">
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Today's plan</h3>
+        <span class="small muted" id="todayDate"></span>
+      </div>
+
+      <div id="dailyPlan"></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Quick check-in</h3>
+        <span>🌷</span>
+      </div>
+
+      <p class="muted small">
+        How are you feeling today?
+      </p>
+
+      <div class="moods">
+        <div class="mood" onclick="setMood('Great','🤩',this)">
+          <span>🤩</span>
+          <small>Great</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Good','😊',this)">
+          <span>😊</span>
+          <small>Good</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Okay','😐',this)">
+          <span>😐</span>
+          <small>Okay</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Low','😔',this)">
+          <span>😔</span>
+          <small>Low</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Tired','😴',this)">
+          <span>😴</span>
+          <small>Tired</small>
+        </div>
+      </div>
+
+      <p id="moodMessage" class="small muted">
+        Your check-in stays on your device.
+      </p>
+
     </div>
 
   </div>
 
-  <div class="habit">
+</section>
 
-    <div class="habit-left">
-      <input type="checkbox" onchange="completeHabit(this)">
-      <span>Take 5 minutes to reflect ✍️</span>
+
+<!-- GOALS -->
+
+<section id="goals" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>My Goals 🎯</h2>
+      <p>Small steps can create a completely different future.</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="openGoalModal()">
+      + New goal
+    </button>
+
+  </div>
+
+  <div id="goalsContainer" class="grid grid-2"></div>
+
+</section>
+
+
+<!-- HABITS -->
+
+<section id="habits" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>My Habits ✓</h2>
+      <p>Consistency matters more than perfection.</p>
     </div>
 
   </div>
 
-</div>
-```
+  <div class="grid grid-2">
 
-  </section>
+    <div class="card">
 
-  <!-- MOOD -->
+      <div class="section-heading">
+        <h3>Today's habits</h3>
+        <span class="muted small" id="habitPercent">0%</span>
+      </div>
 
-  <section id="mood" class="highlight">
+      <div class="progress" style="margin-bottom:15px">
+        <div class="progress-bar" id="habitProgress"></div>
+      </div>
 
-```
-<h2>How are you feeling today?</h2>
+      <div id="habitsContainer"></div>
 
-<p class="section-intro">
-  You don't have to explain everything.
-  Sometimes simply checking in with yourself is a good first step.
-</p>
+      <button class="btn btn-secondary" style="margin-top:15px" onclick="addHabit()">
+        + Add habit
+      </button>
 
-<div class="mood-box">
+    </div>
 
-  <div class="moods">
 
-    <button class="mood" onclick="selectMood(this, 'Amazing 🌟')">
-      🤩
-    </button>
+    <div class="card">
 
-    <button class="mood" onclick="selectMood(this, 'Good 🌱')">
-      🙂
-    </button>
+      <div class="section-heading">
+        <h3>Your streak</h3>
+        <span>🔥</span>
+      </div>
 
-    <button class="mood" onclick="selectMood(this, 'Okay 🌿')">
-      😐
-    </button>
+      <div style="text-align:center;padding:25px">
 
-    <button class="mood" onclick="selectMood(this, 'Not great 💭')">
-      😔
-    </button>
+        <div style="font-size:55px">🔥</div>
 
-    <button class="mood" onclick="selectMood(this, 'Really difficult today 🤍')">
-      😞
+        <div style="font-size:40px;font-weight:800" id="streakNumber">
+          0
+        </div>
+
+        <p class="muted">days of showing up</p>
+
+      </div>
+
+      <p class="small muted" style="text-align:center">
+        Missing a day doesn't erase your progress.
+        Just come back tomorrow.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STUDY -->
+
+<section id="study" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>Study Space 📚</h2>
+      <p>Make studying feel more manageable.</p>
+    </div>
+
+    <button class="btn btn-primary" onclick="openStudyModal()">
+      + Add task
     </button>
 
   </div>
 
-  <div id="moodMessage"></div>
 
-</div>
-```
+  <div class="grid grid-2">
 
-  </section>
+    <div class="card">
 
-  <!-- GOALS -->
+      <div class="section-heading">
+        <h3>Study tasks</h3>
+        <span class="muted small" id="studyCount"></span>
+      </div>
 
-  <section id="goals">
+      <div id="studyContainer"></div>
 
-```
-<h2>Set a Goal</h2>
+    </div>
 
-<p class="section-intro">
-  What is one thing you want to move closer to?
-</p>
 
-<div class="goal-box">
+    <div class="card">
 
-  <input
-    type="text"
-    id="goalInput"
-    placeholder="Example: Finish my science project"
-  >
+      <div class="section-heading">
+        <h3>Smart Study Planner</h3>
+        <span>✨</span>
+      </div>
 
-  <button class="button" onclick="addGoal()">
-    Add Goal
-  </button>
+      <div class="locked" style="min-height:250px">
 
-</div>
+        <div class="locked-content">
 
-<div class="goal-list" id="goalList"></div>
-```
+          <h4>Personalized study plan</h4>
 
-  </section>
+          <p class="muted small" style="margin:10px 0">
+            Your study schedule could adapt around your goals,
+            deadlines, habits and energy levels.
+          </p>
 
-  <!-- MOTIVATION -->
+          <div class="card" style="box-shadow:none;margin-top:15px">
+            📚 Mathematics — 45 min<br>
+            🔬 Physics — 30 min<br>
+            📝 Review notes — 20 min
+          </div>
 
-  <section class="highlight">
+        </div>
 
-```
-<h2>A little reminder</h2>
-
-<div class="quote" id="quote">
-  You don't need to become a completely different person.
-  You just need to keep becoming more yourself.
-</div>
-
-<br>
-
-<button class="button secondary" onclick="newQuote()">
-  Give me another reminder ✨
-</button>
-```
-
-  </section>
-
-  <!-- HOW IT WORKS -->
-
-  <section>
-
-```
-<h2>How Polairs Works</h2>
-
-<div class="cards">
-
-  <div class="card">
-    <div class="card-icon">01</div>
-    <h3>Understand</h3>
-    <p>
-      Discover your goals, challenges, habits, and what matters to you.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="card-icon">02</div>
-    <h3>Build</h3>
-    <p>
-      Turn what you want to change into small actions you can actually do.
-    </p>
-  </div>
-
-  <div class="card">
-    <div class="card-icon">03</div>
-    <h3>Grow</h3>
-    <p>
-      Track your progress, reflect, learn, and keep moving forward.
-    </p>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- VISION -->
-
-  <section class="highlight">
-
-```
-<h2>Our Vision</h2>
-
-<p class="section-intro">
-  We believe every teenager has potential waiting to be unlocked.
-  Polairs aims to make personal growth less overwhelming,
-  more practical, and more accessible.
-</p>
-```
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-```
-<p>
-  © 2026 Polairs — Unlock You 🌿
-</p>
-
-<p style="margin-top: 8px;">
-  Small steps. Real growth.
-</p>
-```
-
-  </footer>
-
-  <script>
-
-    /* THEME */
-
-    function toggleTheme() {
-
-      document.body.classList.toggle("dark");
-
-      const button = document.querySelector(".theme-btn");
-
-      if (document.body.classList.contains("dark")) {
-        button.textContent = "☀️";
-      } else {
-        button.textContent = "🌙";
-      }
-
-    }
-
-
-    /* HABITS */
-
-    let completedHabits = 0;
-
-    function completeHabit(checkbox) {
-
-      const text = checkbox.parentElement.querySelector("span");
-
-      if (checkbox.checked) {
-
-        completedHabits++;
-
-        text.classList.add("completed");
-
-      } else {
-
-        completedHabits--;
-
-        text.classList.remove("completed");
-
-      }
-
-      document.getElementById("habitCount").textContent =
-        completedHabits;
-
-      if (completedHabits > 0) {
-        document.getElementById("streakCount").textContent = completedHabits;
-      }
-
-    }
-
-
-    /* MOOD */
-
-    function selectMood(button, mood) {
-
-      document.querySelectorAll(".mood").forEach(function(item) {
-        item.classList.remove("selected");
-      });
-
-      button.classList.add("selected");
-
-      document.getElementById("moodMessage").textContent =
-        "You're feeling: " + mood + " — thanks for checking in with yourself. 🤍";
-
-    }
-
-
-    /* GOALS */
-
-    let goals = [];
-
-    function addGoal() {
-
-      const input = document.getElementById("goalInput");
-
-      const value = input.value.trim();
-
-      if (!value) {
-        return;
-      }
-
-      goals.push(value);
-
-      input.value = "";
-
-      renderGoals();
-
-    }
-
-
-    function renderGoals() {
-
-      const list = document.getElementById("goalList");
-
-      list.innerHTML = "";
-
-      goals.forEach(function(goal, index) {
-
-        const div = document.createElement("div");
-
-        div.className = "goal";
-
-        div.innerHTML = `
-          <span>🎯 ${goal}</span>
-          <button class="delete" onclick="deleteGoal(${index})">
-            ✕
+        <div class="lock-overlay">
+          <div style="font-size:30px">🔒</div>
+          <strong>Premium feature</strong>
+          <p class="small muted">Let Polairs build your study plan.</p>
+          <button class="btn btn-primary" onclick="showPremiumModal()">
+            Unlock Premium
           </button>
-        `;
+        </div>
 
-        list.appendChild(div);
+      </div>
 
-      });
+    </div>
 
-      document.getElementById("goalCount").textContent =
-        goals.length;
+  </div>
+
+</section>
+
+
+<!-- WELLBEING -->
+
+<section id="wellbeing" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>Well-being 🌱</h2>
+      <p>A space to pause, reflect and check in with yourself.</p>
+    </div>
+
+  </div>
+
+
+  <div class="grid grid-2">
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>How are you feeling?</h3>
+        <span>🌷</span>
+      </div>
+
+      <p class="muted small">
+        There is no right answer.
+      </p>
+
+      <div class="moods">
+
+        <div class="mood" onclick="setMood('Great','🤩',this)">
+          <span>🤩</span>
+          <small>Great</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Good','😊',this)">
+          <span>😊</span>
+          <small>Good</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Okay','😐',this)">
+          <span>😐</span>
+          <small>Okay</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Low','😔',this)">
+          <span>😔</span>
+          <small>Low</small>
+        </div>
+
+        <div class="mood" onclick="setMood('Tired','😴',this)">
+          <span>😴</span>
+          <small>Tired</small>
+        </div>
+
+      </div>
+
+      <div id="wellbeingMessage" class="ai-box">
+        Choose a mood to begin your check-in.
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Your recent check-ins</h3>
+        <span>📊</span>
+      </div>
+
+      <div id="moodHistory"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- JOURNAL -->
+
+<section id="journal" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>My Journal 📖</h2>
+      <p>A private space for your thoughts.</p>
+    </div>
+
+  </div>
+
+
+  <div class="grid grid-2">
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Today's reflection</h3>
+        <span id="journalDate"></span>
+      </div>
+
+      <textarea id="journalText"
+        placeholder="What's on your mind today?"></textarea>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+
+        <span class="small muted">
+          Saved locally on this device.
+        </span>
+
+        <button class="btn btn-primary" onclick="saveJournal()">
+          Save reflection
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="card locked">
+
+      <div class="locked-content">
+
+        <h3>Deep Reflection ✨</h3>
+
+        <p class="muted small" style="margin:10px 0">
+          Reflect on patterns in your goals, habits and journal entries.
+        </p>
+
+        <div class="ai-box">
+          What did you learn about yourself this month?
+        </div>
+
+      </div>
+
+      <div class="lock-overlay">
+        <div style="font-size:30px">✨</div>
+        <strong>Premium reflection</strong>
+        <p class="small muted">
+          Go deeper with your personal growth journey.
+        </p>
+        <button class="btn btn-primary" onclick="showPremiumModal()">
+          Explore Premium
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- JOURNEY -->
+
+<section id="journey" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>My Journey 🧭</h2>
+      <p>Look back and see how far you've come.</p>
+    </div>
+
+  </div>
+
+
+  <div class="grid grid-2">
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Your growth timeline</h3>
+        <span>🌱</span>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>You started your Polairs journey</h4>
+          <p>Every journey begins with deciding to try.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4 id="journeyGoalText">You created your first goal</h4>
+          <p>Goals give your growth somewhere to go.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4 id="journeyHabitText">You started building habits</h4>
+          <p>Small actions become part of who you are.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h4>You're still growing 🌷</h4>
+          <p>And that's the whole point.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="section-heading">
+        <h3>Overall growth</h3>
+        <span>📈</span>
+      </div>
+
+      <div style="text-align:center;padding:20px">
+
+        <div style="font-size:55px;font-weight:800;color:var(--primary-dark)" id="overallProgress">
+          0%
+        </div>
+
+        <p class="muted">your current progress</p>
+
+        <div class="progress" style="margin-top:20px">
+          <div class="progress-bar" id="overallBar"></div>
+        </div>
+
+      </div>
+
+      <div class="grid grid-2" style="margin-top:15px">
+
+        <div style="text-align:center">
+          <strong id="journeyGoals">0</strong>
+          <p class="small muted">Goals</p>
+        </div>
+
+        <div style="text-align:center">
+          <strong id="journeyHabits">0</strong>
+          <p class="small muted">Habits</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PREMIUM -->
+
+<section id="premium" class="section">
+
+  <div class="topbar">
+
+    <div class="page-title">
+      <h2>Polairs Premium ✦</h2>
+      <p>More personalization. More reflection. More room to grow.</p>
+    </div>
+
+  </div>
+
+
+  <div class="premium-hero">
+
+    <div class="premium-badge">✨ POLAIRS PREMIUM</div>
+
+    <h2>Unlock a deeper version of your journey.</h2>
+
+    <p>
+      Polairs Premium is designed to make the experience more
+      personalized around your goals, habits, studies and reflections.
+    </p>
+
+    <button class="btn"
+      style="background:white;color:#365746;margin-top:20px"
+      onclick="showPremiumModal()">
+      Unlock Premium
+    </button>
+
+  </div>
+
+
+  <div class="grid grid-3">
+
+    <div class="card feature">
+      <div class="feature-icon">🤖</div>
+      <h4>Polairs AI Guide</h4>
+      <p>
+        A personalized guide that can help you think through
+        goals, habits and everyday challenges.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">🧭</div>
+      <h4>Personalized Roadmaps</h4>
+      <p>
+        Break large goals into smaller milestones and actionable steps.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">📊</div>
+      <h4>Advanced Insights</h4>
+      <p>
+        Understand patterns in your progress, habits and consistency.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">📚</div>
+      <h4>Smart Study Planner</h4>
+      <p>
+        Build study plans around your priorities and available time.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">✨</div>
+      <h4>Deep Reflection</h4>
+      <p>
+        Guided reflection prompts designed to help you understand yourself.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">📈</div>
+      <h4>Monthly Growth Report</h4>
+      <p>
+        See a simple summary of your progress at the end of each month.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">♾️</div>
+      <h4>Unlimited Goals & Habits</h4>
+      <p>
+        Create as many growth goals and habits as you need.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">🎨</div>
+      <h4>Premium Themes</h4>
+      <p>
+        Personalize your Polairs space with additional visual themes.
+      </p>
+    </div>
+
+    <div class="card feature">
+      <div class="feature-icon">📚</div>
+      <h4>Growth Library</h4>
+      <p>
+        Access curated resources around learning, habits and personal growth.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="card" style="margin-top:22px">
+
+    <div class="section-heading">
+      <h3>Polairs AI Guide — Preview 🤖</h3>
+      <span class="premium-badge" style="background:var(--soft);color:var(--primary-dark)">
+        PREMIUM
+      </span>
+    </div>
+
+    <div class="ai-box">
+
+      <div class="chat-message ai">
+        🌷 <strong>Polairs:</strong>
+        You don't need to fix everything today.
+        What's one small thing you want to make better this week?
+      </div>
+
+      <div class="chat-message user">
+        I want to become more consistent with studying.
+      </div>
+
+      <div class="chat-message ai">
+        That's a good place to start. Instead of aiming for
+        hours of studying, let's focus on showing up consistently.
+        Start with one focused 30-minute session today.
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary" style="margin-top:15px" onclick="showPremiumModal()">
+      Try Polairs AI Guide
+    </button>
+
+  </div>
+
+
+  <div class="card" style="margin-top:22px">
+
+    <div class="section-heading">
+      <h3>Monthly Growth Report — Preview 📈</h3>
+      <span>✨</span>
+    </div>
+
+    <div class="grid grid-3">
+
+      <div>
+        <div class="stat-number" id="reportGoals">0</div>
+        <div class="stat-label">goals created</div>
+      </div>
+
+      <div>
+        <div class="stat-number" id="reportHabits">0%</div>
+        <div class="stat-label">habit consistency</div>
+      </div>
+
+      <div>
+        <div class="stat-number" id="reportStudy">0</div>
+        <div class="stat-label">study tasks completed</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+</div>
+
+
+<!-- ONBOARDING MODAL -->
+
+<div class="modal-backdrop" id="onboardingModal">
+
+  <div class="modal onboarding">
+
+    <div class="flower">🌷</div>
+
+    <h2>Welcome to Polairs</h2>
+
+    <p>
+      A little space to help you grow into the person you want to become.
+    </p>
+
+    <div class="input-group" style="text-align:left">
+      <label>What should we call you?</label>
+      <input id="nameInput" placeholder="Your first name">
+    </div>
+
+    <div class="input-group" style="text-align:left">
+      <label>What do you want to focus on?</label>
+
+      <select id="focusInput">
+
+        <option value="personal growth">Personal growth</option>
+        <option value="studies">Studies</option>
+        <option value="habits">Building better habits</option>
+        <option value="confidence">Confidence</option>
+        <option value="a little bit of everything">A little bit of everything</option>
+
+      </select>
+
+    </div>
+
+    <button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="finishOnboarding()">
+      Start my journey 🌱
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- GOAL MODAL -->
+
+<div class="modal-backdrop" id="goalModal">
+
+  <div class="modal">
+
+    <h3>Create a new goal 🎯</h3>
+
+    <p>Turn something you care about into a clear next step.</p>
+
+    <div class="input-group">
+      <label>Goal</label>
+      <input id="goalTitle" placeholder="e.g. Improve my English">
+    </div>
+
+    <div class="input-group">
+      <label>Category</label>
+
+      <select id="goalCategory">
+        <option>Personal Growth</option>
+        <option>Academic</option>
+        <option>Health & Habits</option>
+        <option>Skills</option>
+        <option>Career</option>
+      </select>
+
+    </div>
+
+    <div class="input-group">
+      <label>First milestone</label>
+      <input id="goalMilestone" placeholder="e.g. Practice 20 minutes a day">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('goalModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createGoal()">Create goal</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- STUDY MODAL -->
+
+<div class="modal-backdrop" id="studyModal">
+
+  <div class="modal">
+
+    <h3>Add a study task 📚</h3>
+
+    <p>Keep your next study step clear and manageable.</p>
+
+    <div class="input-group">
+      <label>Task</label>
+      <input id="taskTitle" placeholder="e.g. Review physics chapter 2">
+    </div>
+
+    <div class="input-group">
+      <label>Subject</label>
+      <input id="taskSubject" placeholder="e.g. Physics">
+    </div>
+
+    <div class="input-group">
+      <label>Time</label>
+      <input id="taskTime" placeholder="e.g. 30 minutes">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('studyModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createStudyTask()">Add task</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- PREMIUM MODAL -->
+
+<div class="modal-backdrop" id="premiumModal">
+
+  <div class="modal" style="text-align:center">
+
+    <div style="font-size:48px">✨</div>
+
+    <h3>Polairs Premium</h3>
+
+    <p>
+      You're looking at a prototype of the Premium experience.
+      Real payments and subscriptions aren't connected yet.
+    </p>
+
+    <div class="card" style="text-align:left;box-shadow:none;background:var(--soft);margin:20px 0">
+
+      <strong>Premium includes:</strong>
+
+      <div style="margin-top:10px;font-size:13px;line-height:2">
+
+        ✓ Polairs AI Guide<br>
+        ✓ Personalized goal roadmaps<br>
+        ✓ Advanced progress insights<br>
+        ✓ Smart study planner<br>
+        ✓ Deep reflection<br>
+        ✓ Monthly Growth Report<br>
+        ✓ Unlimited goals & habits<br>
+        ✓ Premium themes & resources
+
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary" style="width:100%" onclick="activatePremium()">
+      Activate Premium Demo ✨
+    </button>
+
+    <button class="btn btn-outline" style="width:100%;margin-top:8px" onclick="closeModal('premiumModal')">
+      Maybe later
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let data = JSON.parse(localStorage.getItem("polairsData")) || {
+
+  name:"",
+  focus:"personal growth",
+
+  premium:false,
+
+  goals:[],
+
+  habits:[
+    {id:1,name:"Drink enough water",icon:"💧",done:false,streak:0},
+    {id:2,name:"20 minutes of learning",icon:"📚",done:false,streak:0},
+    {id:3,name:"Move your body",icon:"🌿",done:false,streak:0},
+    {id:4,name:"10 minutes without my phone",icon:"📵",done:false,streak:0}
+  ],
+
+  tasks:[],
+
+  moods:[],
+
+  journal:"",
+
+  lastHabitDate:""
+
+};
+
+
+/* =========================
+   SAVE
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    "polairsData",
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function todayKey(){
+
+  return new Date().toISOString().split("T")[0];
+
+}
+
+
+function formatDate(){
+
+  return new Date().toLocaleDateString(
+    undefined,
+    {
+      weekday:"long",
+      month:"short",
+      day:"numeric"
+    }
+  );
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  checkNewDay();
+
+  if(!data.name){
+
+    document.getElementById("onboardingModal")
+      .classList.add("show");
+
+  }
+
+  updateUI();
+
+});
+
+
+function checkNewDay(){
+
+  const today=todayKey();
+
+  if(data.lastHabitDate !== today){
+
+    data.habits.forEach(h=>{
+      h.done=false;
+    });
+
+    data.lastHabitDate=today;
+
+    saveData();
+
+  }
+
+}
+
+
+/* =========================
+   ONBOARDING
+========================= */
+
+function finishOnboarding(){
+
+  const name=document
+    .getElementById("nameInput")
+    .value
+    .trim();
+
+  const focus=document
+    .getElementById("focusInput")
+    .value;
+
+  if(!name){
+
+    showToast("Tell us your name first 🌷");
+    return;
+
+  }
+
+  data.name=name;
+  data.focus=focus;
+
+  saveData();
+
+  closeModal("onboardingModal");
+
+  updateUI();
+
+  showToast("Welcome to Polairs, "+name+" 🌱");
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showSection(name,button){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(s=>s.classList.remove("active"));
+
+  document
+    .getElementById(name)
+    .classList.add("active");
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  updateUI();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function showSectionByName(name){
+
+  const button=[
+    ...document.querySelectorAll(".nav button")
+  ].find(b=>b.getAttribute("onclick")?.includes("'"+name+"'"));
+
+  showSection(name,button);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+  const hour=new Date().getHours();
+
+  let greeting="Good evening";
+
+  if(hour<12) greeting="Good morning";
+  else if(hour<18) greeting="Good afternoon";
+
+  document.getElementById("welcomeTitle").textContent=
+    `${greeting}, ${data.name || "there"} 🌷`;
+
+  document.getElementById("welcomeText").textContent=
+    `Focus today: ${data.focus}. You don't have to do everything at once — just take the next small step.`;
+
+  document.getElementById("todayDate").textContent=formatDate();
+
+  document.getElementById("goalStat").textContent=
+    data.goals.length;
+
+  const doneHabits=
+    data.habits.filter(h=>h.done).length;
+
+  const habitPercent=data.habits.length
+    ? Math.round(doneHabits/data.habits.length*100)
+    :0;
+
+  document.getElementById("habitStat").textContent=
+    habitPercent+"%";
+
+  document.getElementById("studyStat").textContent=
+    data.tasks.filter(t=>t.done).length;
+
+  document.getElementById("journeyStat").textContent=
+    calculateOverall()+"%";
+
+  document.getElementById("avatar").textContent=
+    (data.name || "M").charAt(0).toUpperCase();
+
+  generateDailyPlan();
+
+}
+
+
+/* =========================
+   DAILY PLAN
+========================= */
+
+function generateDailyPlan(){
+
+  const container=document.getElementById("dailyPlan");
+
+  let items=[];
+
+  const firstGoal=data.goals[0];
+
+  if(firstGoal){
+
+    items.push({
+      title:"Work on your goal",
+      sub:firstGoal.title,
+      done:false
+    });
+
+  }else{
+
+    items.push({
+      title:"Create your first goal",
+      sub:"Choose something you want to grow in",
+      done:false
+    });
+
+  }
+
+  const habit=data.habits.find(h=>!h.done);
+
+  if(habit){
+
+    items.push({
+      title:habit.name,
+      sub:"Daily habit",
+      done:false
+    });
+
+  }
+
+  const task=data.tasks.find(t=>!t.done);
+
+  if(task){
+
+    items.push({
+      title:task.title,
+      sub:task.subject+" · "+task.time,
+      done:false
+    });
+
+  }
+
+  items.push({
+    title:"Take a moment to check in",
+    sub:"How are you feeling today?",
+    done:false
+  });
+
+
+  container.innerHTML=items.map((item,index)=>`
+
+    <div class="plan-item">
+
+      <div class="plan-check"
+        onclick="dailyAction(${index})">
+      </div>
+
+      <div class="plan-text">
+        <strong>${escapeHTML(item.title)}</strong>
+        <span>${escapeHTML(item.sub)}</span>
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+function dailyAction(index){
+
+  showToast("Nice step 🌱 Keep going.");
+
+}
+
+
+/* =========================
+   GOALS
+========================= */
+
+function openGoalModal(){
+
+  document
+    .getElementById("goalModal")
+    .classList.add("show");
+
+}
+
+
+function createGoal(){
+
+  const title=document
+    .getElementById("goalTitle")
+    .value.trim();
+
+  const category=document
+    .getElementById("goalCategory")
+    .value;
+
+  const milestone=document
+    .getElementById("goalMilestone")
+    .value.trim();
+
+  if(!title){
+
+    showToast("Give your goal a name 🎯");
+    return;
+
+  }
+
+  data.goals.push({
+
+    id:Date.now(),
+
+    title:title,
+
+    category:category,
+
+    milestone:milestone || "Take the first step",
+
+    progress:0
+
+  });
+
+  saveData();
+
+  document.getElementById("goalTitle").value="";
+  document.getElementById("goalMilestone").value="";
+
+  closeModal("goalModal");
+
+  renderGoals();
+
+  updateUI();
+
+  showToast("Goal created 🌱");
+
+}
+
+
+function renderGoals(){
+
+  const container=document.getElementById("goalsContainer");
+
+  if(data.goals.length===0){
+
+    container.innerHTML=`
+
+      <div class="card" style="grid-column:1/-1;text-align:center;padding:50px">
+
+        <div style="font-size:50px">🌱</div>
+
+        <h3>No goals yet</h3>
+
+        <p class="muted" style="margin:8px 0 18px">
+          Start with one thing you genuinely want to improve.
+        </p>
+
+        <button class="btn btn-primary" onclick="openGoalModal()">
+          Create my first goal
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML=data.goals.map(goal=>`
+
+    <div class="card goal">
+
+      <div class="goal-category">
+        ${escapeHTML(goal.category)}
+      </div>
+
+      <h4>${escapeHTML(goal.title)}</h4>
+
+      <p>
+        First milestone: ${escapeHTML(goal.milestone)}
+      </p>
+
+      <div class="goal-meta">
+        <span>Progress</span>
+        <strong>${goal.progress}%</strong>
+      </div>
+
+      <div class="progress">
+        <div
+          class="progress-bar"
+          style="width:${goal.progress}%">
+        </div>
+      </div>
+
+      <div class="goal-actions">
+
+        <button
+          class="btn btn-secondary small"
+          onclick="increaseGoal(${goal.id})">
+          + Progress
+        </button>
+
+        <button
+          class="btn btn-danger small"
+          onclick="deleteGoal(${goal.id})">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+function increaseGoal(id){
+
+  const goal=data.goals.find(g=>g.id===id);
+
+  if(!goal)return;
+
+  goal.progress=Math.min(
+    100,
+    goal.progress+10
+  );
+
+  saveData();
+
+  renderGoals();
+
+  updateUI();
+
+  showToast("Progress updated ✨");
+
+}
+
+
+function deleteGoal(id){
+
+  if(!confirm("Delete this goal?"))return;
+
+  data.goals=data.goals.filter(
+    g=>g.id!==id
+  );
+
+  saveData();
+
+  renderGoals();
+
+  updateUI();
+
+}
+
+
+/* =========================
+   HABITS
+========================= */
+
+function renderHabits(){
+
+  const container=document.getElementById("habitsContainer");
+
+  container.innerHTML=data.habits.map(habit=>`
+
+    <div class="habit">
+
+      <div
+        class="habit-circle ${habit.done?"done":""}"
+        onclick="toggleHabit(${habit.id})">
+
+        ${habit.done?"✓":habit.icon}
+
+      </div>
+
+      <div class="habit-info">
+
+        <strong>${escapeHTML(habit.name)}</strong>
+
+        <span>Keep showing up</span>
+
+      </div>
+
+      <div class="streak">
+        🔥 ${habit.streak}
+      </div>
+
+    </div>
+
+  `).join("");
+
+
+  const done=data.habits.filter(h=>h.done).length;
+
+  const percent=data.habits.length
+    ? Math.round(done/data.habits.length*100)
+    :0;
+
+  document.getElementById("habitPercent")
+    .textContent=percent+"%";
+
+  document.getElementById("habitProgress")
+    .style.width=percent+"%";
+
+  const streaks=data.habits.map(h=>h.streak);
+
+  document.getElementById("streakNumber")
+    .textContent=streaks.length
+      ? Math.max(...streaks)
+      :0;
+
+}
+
+
+function toggleHabit(id){
+
+  const habit=data.habits.find(h=>h.id===id);
+
+  if(!habit)return;
+
+  habit.done=!habit.done;
+
+  if(habit.done){
+
+    habit.streak++;
+
+    showToast("Habit completed! 🌱");
+
+  }else{
+
+    habit.streak=Math.max(
+      0,
+      habit.streak-1
+    );
+
+  }
+
+  saveData();
+
+  renderHabits();
+
+  updateUI();
+
+}
+
+
+function addHabit(){
+
+  const name=prompt("What habit would you like to build?");
+
+  if(!name)return;
+
+  data.habits.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    icon:"🌱",
+
+    done:false,
+
+    streak:0
+
+  });
+
+  saveData();
+
+  renderHabits();
+
+  updateUI();
+
+  showToast("New habit added 🌱");
+
+}
+
+
+/* =========================
+   STUDY
+========================= */
+
+function openStudyModal(){
+
+  document
+    .getElementById("studyModal")
+    .classList.add("show");
+
+}
+
+
+function createStudyTask(){
+
+  const title=document
+    .getElementById("taskTitle")
+    .value.trim();
+
+  const subject=document
+    .getElementById("taskSubject")
+    .value.trim();
+
+  const time=document
+    .getElementById("taskTime")
+    .value.trim();
+
+  if(!title){
+
+    showToast("Add a task first 📚");
+    return;
+
+  }
+
+  data.tasks.push({
+
+    id:Date.now(),
+
+    title:title,
+
+    subject:subject || "Study",
+
+    time:time || "30 minutes",
+
+    done:false
+
+  });
+
+  saveData();
+
+  document.getElementById("taskTitle").value="";
+  document.getElementById("taskSubject").value="";
+  document.getElementById("taskTime").value="";
+
+  closeModal("studyModal");
+
+  renderStudy();
+
+  updateUI();
+
+  showToast("Study task added 📚");
+
+}
+
+
+function renderStudy(){
+
+  const container=document.getElementById("studyContainer");
+
+  if(data.tasks.length===0){
+
+    container.innerHTML=`
+
+      <div style="text-align:center;padding:35px">
+
+        <div style="font-size:40px">📚</div>
+
+        <p class="muted">
+          No study tasks yet.
+        </p>
+
+      </div>
+
+    `;
+
+  }else{
+
+    container.innerHTML=data.tasks.map(task=>`
+
+      <div class="task">
+
+        <div
+          class="task-check ${task.done?"done":""}"
+          onclick="toggleTask(${task.id})">
+
+          ${task.done?"✓":""}
+
+        </div>
+
+        <div class="task-content">
+
+          <strong style="${task.done?"text-decoration:line-through;color:var(--muted)":""}">
+            ${escapeHTML(task.title)}
+          </strong>
+
+          <span>
+            ${escapeHTML(task.time)}
+          </span>
+
+        </div>
+
+        <span class="subject">
+          ${escapeHTML(task.subject)}
+        </span>
+
+      </div>
+
+    `).join("");
+
+  }
+
+
+  const completed=data.tasks.filter(
+    t=>t.done
+  ).length;
+
+  document.getElementById("studyCount").textContent=
+    `${completed}/${data.tasks.length} completed`;
+
+}
+
+
+function toggleTask(id){
+
+  const task=data.tasks.find(t=>t.id===id);
+
+  if(!task)return;
+
+  task.done=!task.done;
+
+  saveData();
+
+  renderStudy();
+
+  updateUI();
+
+}
+
+
+/* =========================
+   MOOD
+========================= */
+
+function setMood(name,emoji,element){
+
+  const today=todayKey();
+
+  const existing=data.moods.find(
+    m=>m.date===today
+  );
+
+  if(existing){
+
+    existing.mood=name;
+    existing.emoji=emoji;
+
+  }else{
+
+    data.moods.unshift({
+
+      date:today,
+
+      mood:name,
+
+      emoji:emoji
+
+    });
+
+  }
+
+  data.moods=data.moods.slice(0,7);
+
+  saveData();
+
+  document
+    .querySelectorAll(".mood")
+    .forEach(m=>m.classList.remove("selected"));
+
+  if(element){
+    element.classList.add("selected");
+  }
+
+  const messages={
+
+    Great:"That's lovely. Enjoy the good energy today ✨",
+
+    Good:"I'm glad you're doing okay. Keep taking care of yourself 🌱",
+
+    Okay:"Okay is enough. You don't need to feel amazing every day.",
+
+    Low:"Be gentle with yourself today. Small steps still count 🌷",
+
+    Tired:"Maybe today needs a little more rest and a little less pressure."
+
+  };
+
+  const message=messages[name];
+
+  document.getElementById("moodMessage").textContent=
+    message;
+
+  document.getElementById("wellbeingMessage").textContent=
+    message;
+
+  renderMoodHistory();
+
+  showToast("Check-in saved 🌷");
+
+}
+
+
+function renderMoodHistory(){
+
+  const container=document.getElementById("moodHistory");
+
+  if(data.moods.length===0){
+
+    container.innerHTML=
+      `<p class="muted small">Your check-ins will appear here.</p>`;
+
+    return;
+
+  }
+
+  container.innerHTML=data.moods.map(m=>`
+
+    <div class="plan-item">
+
+      <div style="font-size:28px">
+        ${m.emoji}
+      </div>
+
+      <div class="plan-text">
+
+        <strong>${escapeHTML(m.mood)}</strong>
+
+        <span>${m.date}</span>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================
+   JOURNAL
+========================= */
+
+function saveJournal(){
+
+  data.journal=document
+    .getElementById("journalText")
+    .value;
+
+  saveData();
+
+  showToast("Your reflection was saved 📖");
+
+}
+
+
+function renderJournal(){
+
+  document.getElementById("journalText").value=
+    data.journal || "";
+
+  document.getElementById("journalDate").textContent=
+    formatDate();
+
+}
+
+
+/* =========================
+   JOURNEY
+========================= */
+
+function calculateOverall(){
+
+  let goalProgress=0;
+
+  if(data.goals.length){
+
+    goalProgress=
+      data.goals.reduce(
+        (sum,g)=>sum+g.progress,
+        0
+      )/data.goals.length;
+
+  }
+
+  const habitProgress=data.habits.length
+    ? data.habits.filter(h=>h.done).length/
+      data.habits.length*100
+    :0;
+
+  const studyProgress=data.tasks.length
+    ? data.tasks.filter(t=>t.done).length/
+      data.tasks.length*100
+    :0;
+
+  return Math.round(
+    (goalProgress+habitProgress+studyProgress)/3
+  );
+
+}
+
+
+function renderJourney(){
+
+  const progress=calculateOverall();
+
+  document.getElementById("overallProgress")
+    .textContent=progress+"%";
+
+  document.getElementById("overallBar")
+    .style.width=progress+"%";
+
+  document.getElementById("journeyGoals")
+    .textContent=data.goals.length;
+
+  document.getElementById("journeyHabits")
+    .textContent=data.habits.length;
+
+  document.getElementById("journeyGoalText").textContent=
+    data.goals.length
+      ? `You've created ${data.goals.length} goal${data.goals.length>1?"s":""}`
+      : "Create your first goal";
+
+  document.getElementById("journeyHabitText").textContent=
+    data.habits.length
+      ? `You're building ${data.habits.length} habit${data.habits.length>1?"s":""}`
+      : "Start building your first habit";
+
+}
+
+
+/* =========================
+   PREMIUM
+========================= */
+
+function showPremiumModal(){
+
+  document
+    .getElementById("premiumModal")
+    .classList.add("show");
+
+}
+
+
+function activatePremium(){
+
+  data.premium=true;
+
+  saveData();
+
+  closeModal("premiumModal");
+
+  showToast("Premium Demo activated ✨");
+
+  updatePremiumUI();
+
+}
+
+
+function updatePremiumUI(){
+
+  const buttons=document.querySelectorAll(".premium-mini button");
+
+  if(data.premium){
+
+    buttons.forEach(b=>{
+      b.textContent="Premium Active ✨";
+    });
+
+  }
+
+  document.getElementById("reportGoals").textContent=
+    data.goals.length;
+
+  const habitPercent=data.habits.length
+    ? Math.round(
+      data.habits.filter(h=>h.done).length/
+      data.habits.length*100
+    )
+    :0;
+
+  document.getElementById("reportHabits").textContent=
+    habitPercent+"%";
+
+  document.getElementById("reportStudy").textContent=
+    data.tasks.filter(t=>t.done).length;
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function editProfile(){
+
+  const name=prompt(
+    "What should we call you?",
+    data.name
+  );
+
+  if(!name)return;
+
+  data.name=name.trim();
+
+  saveData();
+
+  updateUI();
+
+  showToast("Profile updated 🌷");
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode(){
+
+  const dark=
+    document.body.dataset.dark==="true";
+
+  document.body.dataset.dark=
+    dark ? "false":"true";
+
+  if(!dark){
+
+    document.documentElement.style.setProperty(
+      "--bg",
+      "#17231e"
+    );
+
+    document.documentElement.style.setProperty(
+      "--card",
+      "#213129"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text",
+      "#edf5ef"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted",
+      "#a5b6ac"
+    );
+
+    document.documentElement.style.setProperty(
+      "--border",
+      "#35473e"
+    );
+
+  }else{
+
+    document.documentElement.style.setProperty(
+      "--bg",
+      "#f7faf7"
+    );
+
+    document.documentElement.style.setProperty(
+      "--card",
+      "#ffffff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text",
+      "#20352c"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted",
+      "#718078"
+    );
+
+    document.documentElement.style.setProperty(
+      "--border",
+      "#e1e9e4"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   MODALS
+========================= */
+
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+/* Close modal when clicking outside */
+
+document.querySelectorAll(".modal-backdrop")
+.forEach(backdrop=>{
+
+  backdrop.addEventListener("click",e=>{
+
+    if(e.target===backdrop){
+
+      backdrop.classList.remove("show");
 
     }
 
+  });
 
-    function deleteGoal(index) {
-
-      goals.splice(index, 1);
-
-      renderGoals();
-
-    }
+});
 
 
-    /* MOTIVATION */
+/* =========================
+   TOAST
+========================= */
 
-    const quotes = [
+let toastTimer;
 
-      "You don't need to become a completely different person. You just need to keep becoming more yourself.",
+function showToast(message){
 
-      "Small progress is still progress. 🌱",
+  const toast=document.getElementById("toast");
 
-      "Your future self is built by what you do today.",
+  toast.textContent=message;
 
-      "You are allowed to grow slowly.",
+  toast.classList.add("show");
 
-      "Consistency will take you further than perfection.",
+  clearTimeout(toastTimer);
 
-      "You don't have to have everything figured out yet.",
+  toastTimer=setTimeout(()=>{
 
-      "One small step is still a step forward."
+    toast.classList.remove("show");
 
-    ];
+  },2500);
+
+}
 
 
-    function newQuote() {
+/* =========================
+   SECURITY / TEXT
+========================= */
 
-      const random =
-        Math.floor(Math.random() * quotes.length);
+function escapeHTML(text){
 
-      document.getElementById("quote").textContent =
-        quotes[random];
+  return String(text)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
-    }
+}
 
-  </script>
+
+/* =========================
+   UPDATE EVERYTHING
+========================= */
+
+function updateUI(){
+
+  updateDashboard();
+
+  renderGoals();
+
+  renderHabits();
+
+  renderStudy();
+
+  renderMoodHistory();
+
+  renderJournal();
+
+  renderJourney();
+
+  updatePremiumUI();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+updateUI();
+
+</script>
 
 </body>
 </html>
