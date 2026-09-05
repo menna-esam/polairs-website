@@ -7,33 +7,41 @@
 
 <style>
 :root{
-  --bg:#f7faf8;
+  --bg:#f8f7fb;
   --card:#ffffff;
-  --text:#17231d;
-  --muted:#718078;
-  --primary:#5c9275;
-  --primary-dark:#47765e;
-  --soft:#e9f3ed;
-  --border:#e1ebe5;
+  --text:#252333;
+  --muted:#777387;
+  --primary:#8d7cf6;
+  --primary-dark:#705fe0;
+  --soft:#eeeaff;
+  --border:#e7e3ef;
+  --success:#55a879;
   --danger:#d96b6b;
-  --shadow:0 10px 30px rgba(34,70,50,.08);
+  --shadow:0 10px 30px rgba(70,55,110,.08);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
-  margin:0;
   font-family:Inter,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
   font:inherit;
 }
 
 button{
   cursor:pointer;
+  border:none;
 }
 
 .app{
@@ -44,45 +52,40 @@ button{
 /* SIDEBAR */
 
 .sidebar{
-  width:245px;
+  width:240px;
   background:var(--card);
   border-right:1px solid var(--border);
-  padding:25px 16px;
+  padding:24px 16px;
   position:fixed;
+  left:0;
   top:0;
   bottom:0;
-  left:0;
   z-index:20;
 }
 
 .logo{
   font-size:25px;
   font-weight:800;
-  color:var(--primary-dark);
-  padding:0 12px;
-  margin-bottom:7px;
+  margin-bottom:35px;
+  padding-left:12px;
 }
 
-.tagline{
-  font-size:12px;
-  color:var(--muted);
-  padding:0 12px;
-  margin-bottom:28px;
+.logo span{
+  color:var(--primary);
 }
 
 .nav{
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:7px;
 }
 
 .nav button{
-  border:0;
-  background:transparent;
+  background:none;
+  color:var(--muted);
   text-align:left;
   padding:12px 14px;
   border-radius:12px;
-  color:var(--muted);
   transition:.2s;
 }
 
@@ -93,62 +96,44 @@ button{
   font-weight:600;
 }
 
-.premium-nav{
-  margin-top:12px;
-}
-
-/* MAIN */
-
 .main{
-  margin-left:245px;
-  width:calc(100% - 245px);
+  margin-left:240px;
+  width:calc(100% - 240px);
   padding:30px;
-}
-
-.mobile-header{
-  display:none;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
 }
 
 .topbar{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:28px;
+  margin-bottom:25px;
 }
 
 .topbar h1{
-  margin:0;
   font-size:28px;
 }
 
-.topbar p{
-  color:var(--muted);
-  margin:7px 0 0;
+.top-actions{
+  display:flex;
+  gap:10px;
 }
 
 .icon-btn{
-  border:1px solid var(--border);
-  background:var(--card);
+  width:42px;
+  height:42px;
   border-radius:12px;
-  padding:10px 13px;
+  background:var(--card);
+  border:1px solid var(--border);
 }
 
-/* CARDS */
+/* SECTIONS */
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-  box-shadow:var(--shadow);
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
 }
 
 .grid{
@@ -164,347 +149,370 @@ button{
   grid-template-columns:repeat(3,1fr);
 }
 
-.grid-4{
-  grid-template-columns:repeat(4,1fr);
-}
-
-.stat{
-  padding:20px;
-}
-
-.stat .number{
-  font-size:29px;
-  font-weight:800;
-  margin-top:8px;
-}
-
-.label{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.section-title{
-  margin:28px 0 14px;
-  font-size:20px;
-}
-
-/* HERO */
-
-.hero{
-  background:linear-gradient(135deg,#eaf5ee,#f8fbf9);
+.card{
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:24px;
-  padding:32px;
-  margin-bottom:20px;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow);
 }
 
-.hero h2{
-  margin:0 0 10px;
-  font-size:32px;
+.card h2{
+  margin-bottom:8px;
 }
 
-.hero p{
-  max-width:680px;
+.card h3{
+  margin-bottom:7px;
+}
+
+.muted{
   color:var(--muted);
-  line-height:1.6;
 }
-
-/* BUTTONS */
 
 .btn{
-  border:0;
-  border-radius:11px;
   padding:10px 15px;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--primary-dark);
   font-weight:600;
+}
+
+.btn.primary{
   background:var(--primary);
   color:white;
 }
 
-.btn:hover{
+.btn.primary:hover{
   background:var(--primary-dark);
 }
 
-.btn.secondary{
-  background:var(--soft);
-  color:var(--primary-dark);
-}
-
 .btn.danger{
-  background:#fae8e8;
-  color:#a74b4b;
+  background:#fff0f0;
+  color:var(--danger);
 }
 
 .btn.small{
   padding:7px 10px;
-  font-size:12px;
+  font-size:13px;
 }
 
-/* PROGRESS */
+/* DASHBOARD */
+
+.hero{
+  background:linear-gradient(135deg,#eeeaff,#faf8ff);
+  border-radius:25px;
+  padding:30px;
+  margin-bottom:20px;
+}
+
+.hero h2{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.tag{
+  background:var(--soft);
+  color:var(--primary-dark);
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.stat{
+  text-align:center;
+}
+
+.stat-number{
+  font-size:30px;
+  font-weight:800;
+  color:var(--primary-dark);
+}
+
+/* GOALS */
+
+.goal{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+  margin-top:12px;
+}
 
 .progress{
   height:8px;
-  background:#edf2ee;
+  background:#eeeaf5;
   border-radius:20px;
   overflow:hidden;
+  margin:10px 0;
 }
 
-.progress div{
+.progress-bar{
   height:100%;
   background:var(--primary);
-  border-radius:20px;
 }
 
-/* LISTS */
+/* HABITS */
 
-.list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.list-item{
+.habit{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:12px;
-  padding:14px;
   border:1px solid var(--border);
-  border-radius:13px;
+  padding:14px;
+  border-radius:14px;
+  margin-top:10px;
 }
 
-.list-item h4{
-  margin:0 0 4px;
+.habit.done{
+  background:#f0faf4;
 }
 
-.list-item p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
+.check{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:var(--soft);
+  color:var(--primary-dark);
+}
+
+.habit.done .check{
+  background:var(--success);
+  color:white;
 }
 
 /* FORMS */
 
-.form{
-  display:grid;
-  gap:12px;
-}
-
-input,textarea,select{
+input,
+textarea,
+select{
   width:100%;
-  padding:11px 13px;
   border:1px solid var(--border);
+  border-radius:12px;
+  padding:11px 13px;
   background:var(--card);
   color:var(--text);
-  border-radius:11px;
   outline:none;
 }
 
-textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-.form-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-/* MOOD */
-
-.mood-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;
-}
-
-.mood-btn{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:15px;
-  padding:15px 8px;
-  text-align:center;
-}
-
-.mood-btn:hover,
-.mood-btn.selected{
-  background:var(--soft);
+input:focus,
+textarea:focus,
+select:focus{
   border-color:var(--primary);
 }
 
-.mood-emoji{
-  font-size:27px;
+.form-group{
+  margin-bottom:12px;
+}
+
+.form-group label{
   display:block;
-  margin-bottom:5px;
-}
-
-/* MOOD BARS */
-
-.mood-bars{
-  display:flex;
-  align-items:end;
-  gap:12px;
-  height:150px;
-  padding-top:15px;
-}
-
-.mood-bar-wrap{
-  flex:1;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:end;
-  align-items:center;
-  gap:6px;
-}
-
-.mood-bar{
-  width:100%;
-  max-width:35px;
-  background:var(--primary);
-  border-radius:8px 8px 3px 3px;
-  min-height:5px;
-}
-
-.mood-day{
-  font-size:11px;
-  color:var(--muted);
+  margin-bottom:6px;
+  font-size:13px;
+  font-weight:600;
 }
 
 /* SCHOLARSHIPS */
 
+.scholarship-toolbar{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;
+  margin:20px 0;
+}
+
 .scholarship-card{
-  display:flex;
-  flex-direction:column;
-  gap:13px;
+  position:relative;
 }
 
 .scholarship-header{
   display:flex;
   justify-content:space-between;
-  gap:10px;
+  gap:15px;
 }
 
-.scholarship-header h3{
-  margin:0;
+.scholarship-title{
+  font-size:19px;
+  font-weight:750;
 }
 
-.badge{
-  display:inline-block;
-  background:var(--soft);
-  color:var(--primary-dark);
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:700;
+.star{
+  font-size:22px;
+  background:none;
+  color:#b9b3c7;
+}
+
+.star.saved{
+  color:#f2b84b;
 }
 
 .scholarship-meta{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
+  margin:12px 0;
 }
 
-.scholarship-meta span{
-  background:#f4f7f5;
-  padding:5px 8px;
+.meta{
+  background:#f5f2fa;
+  padding:6px 9px;
   border-radius:8px;
-  font-size:11px;
+  font-size:12px;
   color:var(--muted);
 }
 
-.filters{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:10px;
-  margin-bottom:18px;
+.deadline{
+  font-size:13px;
+  margin:12px 0;
 }
 
-.star{
-  border:0;
-  background:transparent;
-  font-size:22px;
-  padding:0;
+.deadline.soon{
+  color:#d98b36;
+  font-weight:700;
 }
 
-/* STATUS */
+.deadline.expired{
+  color:var(--danger);
+}
 
-.status{
+.scholarship-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.status-select{
+  max-width:180px;
+}
+
+.match{
+  position:absolute;
+  top:18px;
+  right:55px;
   font-size:11px;
+  background:#eaf8f0;
+  color:#438961;
   padding:5px 8px;
-  border-radius:8px;
-  background:#f2f4f3;
-}
-
-.status.interested{background:#fff5dc;color:#94701e}
-.status.preparing{background:#eaf1ff;color:#46669c}
-.status.applied{background:#e9f3ed;color:#47765e}
-.status.accepted{background:#dff5e7;color:#39774e}
-.status.rejected{background:#fae8e8;color:#a74b4b}
-
-/* WELLBEING */
-
-.wellbeing-banner{
-  background:linear-gradient(135deg,#f1f7f3,#edf5f7);
   border-radius:20px;
-  padding:25px;
-  margin-bottom:18px;
+  font-weight:700;
 }
 
-.wellbeing-banner h2{
-  margin:0 0 8px;
+.update-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.wellbeing-banner p{
-  color:var(--muted);
-  line-height:1.6;
+/* MOOD */
+
+.moods{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
-.calm-card{
-  text-align:center;
+.mood-btn{
+  padding:12px 15px;
+  border-radius:13px;
+  background:#f5f2fa;
+  font-size:20px;
 }
 
-.calm-icon{
-  font-size:42px;
-  margin-bottom:8px;
-}
-
-.reflection{
+.mood-btn:hover{
   background:var(--soft);
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:12px;
 }
 
-.reflection p{
-  margin:0 0 12px;
-  line-height:1.5;
+.mood-history{
+  display:flex;
+  gap:8px;
+  align-items:flex-end;
+  height:120px;
+  margin-top:20px;
+}
+
+.mood-bar{
+  flex:1;
+  background:var(--soft);
+  border-radius:10px 10px 3px 3px;
+  min-height:15px;
 }
 
 /* PREMIUM */
 
+.premium{
+  background:linear-gradient(135deg,#eeeaff,#f9f5ff);
+}
+
 .premium-card{
-  position:relative;
-  overflow:hidden;
+  border:1px solid #ddd4ff;
+  border-radius:16px;
+  padding:18px;
+  background:white;
 }
 
 .lock{
-  font-size:30px;
+  float:right;
 }
 
-.premium-label{
-  color:#9a7b28;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.5px;
+/* MOBILE */
+
+.mobile-header{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .mobile-header{
+    display:flex;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:60px;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    z-index:30;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 15px;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:80px 16px 30px;
+  }
+
+  .grid-2,
+  .grid-3{
+    grid-template-columns:1fr;
+  }
+
+  .scholarship-toolbar{
+    grid-template-columns:1fr;
+  }
 }
 
 /* MODAL */
 
-.modal-overlay{
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.35);
+  background:rgba(20,15,30,.45);
   display:none;
   align-items:center;
   justify-content:center;
@@ -512,20 +520,39 @@ textarea{
   padding:20px;
 }
 
-.modal-overlay.show{
+.modal.show{
   display:flex;
 }
 
-.modal{
-  width:100%;
-  max-width:500px;
+.modal-box{
   background:var(--card);
+  max-width:600px;
+  width:100%;
   border-radius:22px;
   padding:25px;
+  max-height:90vh;
+  overflow:auto;
 }
 
-.modal h2{
-  margin-top:0;
+.choice-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+
+.choice{
+  padding:9px 12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--muted);
+}
+
+.choice.selected{
+  background:var(--soft);
+  color:var(--primary-dark);
+  border-color:var(--primary);
 }
 
 /* TOAST */
@@ -534,12 +561,12 @@ textarea{
   position:fixed;
   bottom:25px;
   right:25px;
-  background:#20352a;
+  background:#292535;
   color:white;
-  padding:12px 17px;
-  border-radius:11px;
+  padding:13px 18px;
+  border-radius:12px;
   opacity:0;
-  transform:translateY(10px);
+  transform:translateY(15px);
   pointer-events:none;
   transition:.25s;
   z-index:200;
@@ -549,688 +576,537 @@ textarea{
   opacity:1;
   transform:translateY(0);
 }
-
-/* MOBILE */
-
-@media(max-width:900px){
-  .sidebar{
-    display:none;
-  }
-
-  .main{
-    margin-left:0;
-    width:100%;
-    padding:20px;
-  }
-
-  .mobile-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:22px;
-  }
-
-  .mobile-header strong{
-    font-size:22px;
-    color:var(--primary-dark);
-  }
-
-  .grid-3,
-  .grid-4{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .filters{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
-  .grid-2,
-  .grid-3,
-  .grid-4,
-  .form-row{
-    grid-template-columns:1fr;
-  }
-
-  .mood-grid{
-    grid-template-columns:repeat(5,1fr);
-  }
-
-  .hero h2{
-    font-size:26px;
-  }
-
-  .filters{
-    grid-template-columns:1fr;
-  }
-
-  .list-item{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-}
 </style>
 </head>
 
 <body>
 
+<div class="mobile-header">
+  <strong>Polairs<span style="color:var(--primary)">.</span></strong>
+  <button class="icon-btn" onclick="toggleDark()">☾</button>
+</div>
+
 <div class="app">
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
-  <div class="logo">Polairs 🌷</div>
-  <div class="tagline">Unlock You</div>
 
-  <nav class="nav">
-    <button class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
-    <button onclick="showPage('goals',this)">🎯 My Goals</button>
-    <button onclick="showPage('habits',this)">🔥 Habits</button>
-    <button onclick="showPage('study',this)">📚 Study</button>
-    <button onclick="showPage('scholarships',this)">🎓 Scholarships</button>
-    <button onclick="showPage('wellbeing',this)">🧠 Well-being</button>
-    <button onclick="showPage('journal',this)">📖 Journal</button>
-    <button onclick="showPage('journey',this)">🌱 My Journey</button>
-    <button class="premium-nav" onclick="showPage('premium',this)">💎 Premium</button>
-  </nav>
+  <div class="logo">
+    Polairs<span>.</span>
+  </div>
+
+  <div class="nav">
+    <button onclick="showSection('dashboard',this)" class="active">🏠 Dashboard</button>
+    <button onclick="showSection('goals',this)">🎯 My Goals</button>
+    <button onclick="showSection('habits',this)">🌱 Habits</button>
+    <button onclick="showSection('study',this)">📚 Study</button>
+    <button onclick="showSection('scholarships',this)">🎓 Scholarships</button>
+    <button onclick="showSection('wellbeing',this)">💜 Well-being</button>
+    <button onclick="showSection('journal',this)">📖 Journal</button>
+    <button onclick="showSection('journey',this)">🛤 My Journey</button>
+    <button onclick="showSection('profile',this)">👤 Profile</button>
+    <button onclick="showSection('premium',this)">✨ Premium</button>
+  </div>
+
 </aside>
 
 <main class="main">
 
-<div class="mobile-header">
-  <strong>Polairs 🌷</strong>
-  <button class="icon-btn" onclick="toggleDark()">☾</button>
+<div class="topbar">
+  <h1 id="pageTitle">Dashboard</h1>
+
+  <div class="top-actions">
+    <button class="icon-btn" onclick="toggleDark()">☾</button>
+  </div>
 </div>
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="page active">
 
-  <div class="topbar">
-    <div>
-      <h1 id="greeting">Welcome back 🌷</h1>
-      <p>Your growth doesn't have to happen all at once.</p>
-    </div>
-
-    <button class="icon-btn" onclick="toggleDark()">☾</button>
-  </div>
+<section id="dashboard" class="section active">
 
   <div class="hero">
-    <h2>Small steps. Real growth.</h2>
-    <p>
-      Polairs helps you understand yourself, build better habits,
-      reach your goals, discover opportunities, and take care of your well-being.
+    <h2 id="greeting">Welcome to Polairs 🌷</h2>
+    <p class="muted">
+      A small space to help you understand yourself, grow and build your future.
     </p>
+
+    <div class="tags" id="dashboardInterests"></div>
   </div>
-
-  <div class="grid grid-4">
-    <div class="card stat">
-      <div class="label">Goals</div>
-      <div class="number" id="statGoals">0</div>
-    </div>
-
-    <div class="card stat">
-      <div class="label">Habits today</div>
-      <div class="number" id="statHabits">0%</div>
-    </div>
-
-    <div class="card stat">
-      <div class="label">Study progress</div>
-      <div class="number" id="statStudy">0%</div>
-    </div>
-
-    <div class="card stat">
-      <div class="label">Saved scholarships</div>
-      <div class="number" id="statScholarships">0</div>
-    </div>
-  </div>
-
-  <h3 class="section-title">✨ Today's focus</h3>
 
   <div class="grid grid-3">
 
-    <div class="card">
-      <h3>🎯 One goal</h3>
-      <p id="dailyGoalText">Choose a goal to start your day.</p>
-      <button class="btn secondary small" onclick="showPageByName('goals')">
-        View goals
-      </button>
+    <div class="card stat">
+      <div class="stat-number" id="goalStat">0%</div>
+      <p class="muted">Goal progress</p>
     </div>
 
-    <div class="card">
-      <h3>🌷 Check in</h3>
-      <p>How are you feeling today?</p>
-      <button class="btn secondary small" onclick="showPageByName('wellbeing')">
-        Check in
-      </button>
+    <div class="card stat">
+      <div class="stat-number" id="habitStat">0%</div>
+      <p class="muted">Today's habits</p>
     </div>
 
-    <div class="card">
-      <h3>🎓 Opportunity</h3>
-      <p>Explore scholarships and programs that could fit your journey.</p>
-      <button class="btn secondary small" onclick="showPageByName('scholarships')">
-        Explore
-      </button>
+    <div class="card stat">
+      <div class="stat-number" id="studyStat">0%</div>
+      <p class="muted">Study progress</p>
     </div>
 
   </div>
 
-</section>
-
-
-<!-- GOALS -->
-<section id="goals" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>My Goals 🎯</h1>
-      <p>Turn something you want into small steps you can actually take.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Create a goal</h3>
-
-    <div class="form">
-      <input id="goalTitle" placeholder="Example: Improve my English">
-      <div class="form-row">
-        <input id="goalCategory" placeholder="Category">
-        <input id="goalMilestone" placeholder="First milestone">
-      </div>
-      <button class="btn" onclick="addGoal()">Add Goal</button>
-    </div>
-  </div>
-
-  <h3 class="section-title">Your goals</h3>
-  <div id="goalsList" class="grid grid-2"></div>
-
-</section>
-
-
-<!-- HABITS -->
-<section id="habits" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>Habits 🔥</h1>
-      <p>Consistency matters more than perfection.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Add a habit</h3>
-
-    <div class="form-row">
-      <input id="habitInput" placeholder="Example: Read for 15 minutes">
-      <button class="btn" onclick="addHabit()">Add habit</button>
-    </div>
-  </div>
-
-  <h3 class="section-title">Today's habits</h3>
-  <div id="habitsList" class="list"></div>
-
-</section>
-
-
-<!-- STUDY -->
-<section id="study" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>Study 📚</h1>
-      <p>Make studying clearer, smaller, and more manageable.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Add study task</h3>
-
-    <div class="form">
-      <input id="taskTitle" placeholder="What do you need to study?">
-
-      <div class="form-row">
-        <input id="taskSubject" placeholder="Subject">
-        <input id="taskTime" placeholder="Estimated time e.g. 45 min">
-      </div>
-
-      <div class="form-row">
-        <input id="taskDate" type="date">
-
-        <select id="taskPriority">
-          <option value="Low">Low priority</option>
-          <option value="Medium" selected>Medium priority</option>
-          <option value="High">High priority</option>
-        </select>
-      </div>
-
-      <button class="btn" onclick="addTask()">Add task</button>
-    </div>
-  </div>
-
-  <h3 class="section-title">Study plan</h3>
-  <div id="studyList" class="list"></div>
-
-</section>
-
-
-<!-- SCHOLARSHIPS -->
-<section id="scholarships" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>Scholarships 🎓</h1>
-      <p>Discover opportunities and keep your applications organized.</p>
-    </div>
-  </div>
-
-  <div class="hero">
-    <h2>There are opportunities out there. 🌍</h2>
-    <p>
-      Keep the scholarships, programs, fellowships, and competitions
-      you care about in one place.
-    </p>
-  </div>
-
-  <div class="card">
-
-    <div class="filters">
-      <input id="scholarshipSearch"
-             placeholder="Search scholarships..."
-             oninput="renderScholarships()">
-
-      <select id="countryFilter" onchange="renderScholarships()">
-        <option value="">All countries</option>
-        <option>Egypt</option>
-        <option>Turkey</option>
-        <option>USA</option>
-        <option>UK</option>
-        <option>Europe</option>
-        <option>International</option>
-      </select>
-
-      <select id="fieldFilter" onchange="renderScholarships()">
-        <option value="">All fields</option>
-        <option>Engineering</option>
-        <option>Technology</option>
-        <option>Science</option>
-        <option>Business</option>
-        <option>General</option>
-      </select>
-
-      <select id="fundingFilter" onchange="renderScholarships()">
-        <option value="">Any funding</option>
-        <option>Fully Funded</option>
-        <option>Partial</option>
-      </select>
-    </div>
-
-  </div>
-
-  <h3 class="section-title">Explore opportunities</h3>
-
-  <div id="scholarshipGrid" class="grid grid-2"></div>
-
-  <h3 class="section-title">➕ Add your own opportunity</h3>
-
-  <div class="card">
-
-    <div class="form">
-
-      <input id="newScholarshipName"
-             placeholder="Scholarship / program name">
-
-      <div class="form-row">
-        <input id="newScholarshipCountry"
-               placeholder="Country">
-
-        <input id="newScholarshipField"
-               placeholder="Field">
-      </div>
-
-      <div class="form-row">
-        <input id="newScholarshipDeadline"
-               type="date">
-
-        <select id="newScholarshipFunding">
-          <option>Fully Funded</option>
-          <option>Partial</option>
-        </select>
-      </div>
-
-      <button class="btn" onclick="addScholarship()">
-        Add opportunity
-      </button>
-
-    </div>
-
-  </div>
-
-  <h3 class="section-title">📋 My application tracker</h3>
-
-  <div id="applicationTracker" class="list"></div>
-
-</section>
-
-
-<!-- WELLBEING -->
-<section id="wellbeing" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>Well-being 🧠🌷</h1>
-      <p>A space to slow down, check in, and understand yourself.</p>
-    </div>
-  </div>
-
-  <div class="wellbeing-banner">
-    <h2>You don't have to be productive all the time.</h2>
-    <p>
-      Your feelings matter too. Use this space for reflection,
-      calming activities, and noticing patterns in how you're doing.
-    </p>
-  </div>
-
-
-  <!-- MOOD -->
-
-  <div class="card">
-    <h3>How are you feeling today?</h3>
-    <p class="label">There is no right answer.</p>
-
-    <div class="mood-grid">
-
-      <button class="mood-btn" onclick="checkMood('Amazing','🤩',5)">
-        <span class="mood-emoji">🤩</span>
-        Amazing
-      </button>
-
-      <button class="mood-btn" onclick="checkMood('Good','😊',4)">
-        <span class="mood-emoji">😊</span>
-        Good
-      </button>
-
-      <button class="mood-btn" onclick="checkMood('Okay','😐',3)">
-        <span class="mood-emoji">😐</span>
-        Okay
-      </button>
-
-      <button class="mood-btn" onclick="checkMood('Low','😔',2)">
-        <span class="mood-emoji">😔</span>
-        Low
-      </button>
-
-      <button class="mood-btn" onclick="checkMood('Overwhelmed','😣',1)">
-        <span class="mood-emoji">😣</span>
-        Overwhelmed
-      </button>
-
-    </div>
-
-    <p id="moodMessage" class="label"></p>
-
-  </div>
-
-
-  <!-- MOOD HISTORY -->
-
-  <h3 class="section-title">📊 Your mood lately</h3>
-
-  <div class="card">
-    <div id="moodBars" class="mood-bars"></div>
-  </div>
-
-
-  <!-- CALM -->
-
-  <h3 class="section-title">🧘 Take a moment</h3>
-
-  <div class="grid grid-3">
-
-    <div class="card calm-card">
-      <div class="calm-icon">🌬️</div>
-      <h3>Box breathing</h3>
-      <p class="label">
-        Slowly breathe in, hold, breathe out, and pause.
-      </p>
-      <button class="btn secondary" onclick="startBreathing()">
-        Start
-      </button>
-    </div>
-
-    <div class="card calm-card">
-      <div class="calm-icon">🌿</div>
-      <h3>Ground yourself</h3>
-      <p class="label">
-        Notice things you can see, hear, and feel around you.
-      </p>
-      <button class="btn secondary" onclick="groundingPrompt()">
-        Try it
-      </button>
-    </div>
-
-    <div class="card calm-card">
-      <div class="calm-icon">☕</div>
-      <h3>Small reset</h3>
-      <p class="label">
-        Drink water, stretch, step away from the screen, or rest.
-      </p>
-      <button class="btn secondary" onclick="smallReset()">
-        Reset
-      </button>
-    </div>
-
-  </div>
-
-
-  <!-- REFLECTION -->
-
-  <h3 class="section-title">💭 Guided reflection</h3>
-
-  <div class="card">
-
-    <div id="reflectionBox" class="reflection">
-      <p id="reflectionPrompt">
-        What's one thing that has been taking up space in your mind lately?
-      </p>
-
-      <button class="btn secondary" onclick="newReflection()">
-        Another prompt
-      </button>
-    </div>
-
-    <textarea id="reflectionText"
-              placeholder="Write whatever comes to mind..."></textarea>
-
-    <br><br>
-
-    <button class="btn" onclick="saveReflection()">
-      Save reflection
-    </button>
-
-  </div>
-
-
-  <!-- SUPPORT -->
-
-  <h3 class="section-title">🫶 When things feel too much</h3>
-
-  <div class="card">
-
-    <h3>You don't have to handle everything alone.</h3>
-
-    <p style="line-height:1.7;color:var(--muted)">
-      If you're struggling, consider talking to someone you trust,
-      such as a parent, teacher, counselor, friend, or mental-health professional.
-    </p>
-
-    <p style="line-height:1.7;color:var(--muted)">
-      If you feel that you may hurt yourself or you're in immediate danger,
-      seek urgent help from local emergency services or a trusted person nearby.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- JOURNAL -->
-<section id="journal" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>Journal 📖</h1>
-      <p>A private space for your thoughts.</p>
-    </div>
-  </div>
-
-  <div class="card">
-
-    <input id="journalTitle"
-           placeholder="Give this entry a title...">
-
-    <br><br>
-
-    <textarea id="journalText"
-              placeholder="Write what's on your mind..."></textarea>
-
-    <br>
-
-    <button class="btn" onclick="saveJournal()">
-      Save entry
-    </button>
-
-  </div>
-
-  <h3 class="section-title">Previous entries</h3>
-
-  <div id="journalHistory" class="list"></div>
-
-</section>
-
-
-<!-- JOURNEY -->
-<section id="journey" class="page">
-
-  <div class="topbar">
-    <div>
-      <h1>My Journey 🌱</h1>
-      <p>Growth is a journey, not a competition.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Overall growth</h3>
-
-    <div class="progress">
-      <div id="journeyProgress" style="width:0%"></div>
-    </div>
-
-    <p id="journeyText" class="label">0% overall progress</p>
-  </div>
-
-  <h3 class="section-title">Your journey</h3>
+  <br>
 
   <div class="grid grid-2">
 
     <div class="card">
-      <h3>🎯 Goals</h3>
-      <p id="journeyGoals">0 goals</p>
+      <h2>Today's Plan 🌷</h2>
+      <div id="dailyPlan"></div>
     </div>
 
     <div class="card">
-      <h3>🔥 Habits</h3>
-      <p id="journeyHabits">0% today</p>
-    </div>
+      <h2>Scholarships for You 🎓</h2>
+      <p class="muted">
+        Opportunities matched with your interests.
+      </p>
 
-    <div class="card">
-      <h3>📚 Learning</h3>
-      <p id="journeyStudy">0% study progress</p>
-    </div>
+      <div id="dashboardScholarships"></div>
 
-    <div class="card">
-      <h3>🌷 Well-being</h3>
-      <p id="journeyMoods">0 check-ins</p>
+      <br>
+
+      <button class="btn primary" onclick="showSectionByName('scholarships')">
+        Explore Scholarships
+      </button>
     </div>
 
   </div>
 
 </section>
 
+<!-- GOALS -->
 
-<!-- PREMIUM -->
-<section id="premium" class="page">
+<section id="goals" class="section">
 
-  <div class="topbar">
-    <div>
-      <h1>Polairs Premium 💎</h1>
-      <p>More personalization for your growth journey.</p>
+  <div class="card">
+    <h2>My Goals 🎯</h2>
+    <p class="muted">Turn something you want into something you can work toward.</p>
+
+    <br>
+
+    <div class="grid grid-2">
+
+      <div>
+        <div class="form-group">
+          <label>Goal</label>
+          <input id="goalTitle" placeholder="Example: Improve my English">
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <input id="goalCategory" placeholder="Academic / Personal / Career">
+        </div>
+
+        <div class="form-group">
+          <label>First milestone</label>
+          <input id="goalMilestone" placeholder="Example: Study 20 minutes daily">
+        </div>
+
+        <button class="btn primary" onclick="addGoal()">
+          Add Goal
+        </button>
+      </div>
+
+      <div id="goalList"></div>
+
     </div>
   </div>
 
-  <div class="hero">
-    <span class="premium-label">POLAIRS PREMIUM</span>
-    <h2>Make Polairs more personal.</h2>
-    <p>
-      Premium is currently a prototype experience.
-      No real payment is being processed.
+</section>
+
+<!-- HABITS -->
+
+<section id="habits" class="section">
+
+  <div class="card">
+
+    <h2>Habits 🌱</h2>
+    <p class="muted">Small actions become part of who you are.</p>
+
+    <br>
+
+    <div class="form-group">
+      <input id="newHabit" placeholder="Add a new habit">
+    </div>
+
+    <button class="btn primary" onclick="addHabit()">
+      Add Habit
+    </button>
+
+    <div id="habitList"></div>
+
+  </div>
+
+</section>
+
+<!-- STUDY -->
+
+<section id="study" class="section">
+
+  <div class="card">
+
+    <h2>Study Planner 📚</h2>
+
+    <p class="muted">
+      Keep your academic tasks in one place.
     </p>
 
-    <button class="btn" onclick="activatePremium()">
-      Activate Premium Demo
-    </button>
+    <br>
+
+    <div class="grid grid-2">
+
+      <div>
+
+        <div class="form-group">
+          <label>Task</label>
+          <input id="studyTitle" placeholder="Example: Physics revision">
+        </div>
+
+        <div class="form-group">
+          <label>Subject</label>
+          <input id="studySubject" placeholder="Physics">
+        </div>
+
+        <div class="form-group">
+          <label>Time</label>
+          <input id="studyTime" placeholder="30 minutes">
+        </div>
+
+        <button class="btn primary" onclick="addStudyTask()">
+          Add Study Task
+        </button>
+
+      </div>
+
+      <div id="studyList"></div>
+
+    </div>
+
+    <br>
+
+    <div class="card" style="background:var(--soft);box-shadow:none">
+      <h3>Recommended for you</h3>
+      <div id="recommendedStudy"></div>
+    </div>
+
   </div>
 
-  <div class="grid grid-3">
+</section>
 
-    <div class="card premium-card">
-      <div class="lock">🎓</div>
-      <h3>Scholarship Match</h3>
-      <p class="label">
-        Get opportunities matched to your interests, field,
-        academic level, and goals.
-      </p>
+<!-- SCHOLARSHIPS -->
+
+<section id="scholarships" class="section">
+
+  <div class="card">
+
+    <div class="update-row">
+
+      <div>
+        <h2>Scholarship Hub 🎓</h2>
+
+        <p class="muted">
+          Find opportunities that match your goals.
+        </p>
+      </div>
+
+      <button class="btn primary" onclick="refreshScholarships()">
+        🔄 Refresh
+      </button>
+
     </div>
 
-    <div class="card premium-card">
-      <div class="lock">🧠</div>
-      <h3>Polairs AI Guide</h3>
-      <p class="label">
-        Personalized guidance for goals, studying, habits,
-        and everyday decisions.
-      </p>
+    <br>
+
+    <div class="update-row">
+      <small class="muted" id="scholarshipUpdated">
+        Loading update information...
+      </small>
+
+      <small class="muted">
+        Expired opportunities are automatically hidden.
+      </small>
     </div>
 
-    <div class="card premium-card">
-      <div class="lock">📊</div>
-      <h3>Advanced Insights</h3>
-      <p class="label">
-        Understand your habits, study patterns, goals,
-        and well-being check-ins.
-      </p>
+    <div class="scholarship-toolbar">
+
+      <input
+        id="scholarshipSearch"
+        placeholder="Search scholarships..."
+        oninput="renderScholarships()"
+      >
+
+      <select id="countryFilter" onchange="renderScholarships()">
+        <option value="all">All countries</option>
+      </select>
+
+      <select id="fieldFilter" onchange="renderScholarships()">
+        <option value="all">All fields</option>
+      </select>
+
+      <select id="statusFilter" onchange="renderScholarships()">
+        <option value="open">Open now</option>
+        <option value="all">All</option>
+        <option value="saved">Saved</option>
+        <option value="applied">Applied</option>
+      </select>
+
     </div>
 
-    <div class="card premium-card">
-      <div class="lock">🗺️</div>
-      <h3>Personal Roadmaps</h3>
-      <p class="label">
-        Break large goals into personalized steps.
+    <div id="scholarshipList"></div>
+
+  </div>
+
+</section>
+
+<!-- WELLBEING -->
+
+<section id="wellbeing" class="section">
+
+  <div class="grid grid-2">
+
+    <div class="card">
+
+      <h2>How are you feeling today? 💜</h2>
+
+      <p class="muted">
+        You don't have to explain everything. Just check in.
       </p>
+
+      <div class="moods">
+
+        <button class="mood-btn" onclick="addMood('Great','😄')">😄</button>
+        <button class="mood-btn" onclick="addMood('Good','🙂')">🙂</button>
+        <button class="mood-btn" onclick="addMood('Okay','😐')">😐</button>
+        <button class="mood-btn" onclick="addMood('Low','😔')">😔</button>
+        <button class="mood-btn" onclick="addMood('Overwhelmed','😣')">😣</button>
+
+      </div>
+
+      <br>
+
+      <h3>Your recent mood</h3>
+
+      <div class="mood-history" id="moodHistory"></div>
+
     </div>
 
-    <div class="card premium-card">
-      <div class="lock">📅</div>
-      <h3>Smart Study Planner</h3>
-      <p class="label">
-        Build a study plan around your goals and available time.
+    <div class="card">
+
+      <h2>Small Reset 🌿</h2>
+
+      <p class="muted">
+        Take a short break and give your mind some space.
       </p>
+
+      <br>
+
+      <button class="btn primary" onclick="breathing()">
+        Start breathing exercise
+      </button>
+
+      <br><br>
+
+      <div id="breathingText" style="font-size:20px;font-weight:700"></div>
+
+      <br>
+
+      <button class="btn" onclick="grounding()">
+        5-minute grounding
+      </button>
+
     </div>
 
-    <div class="card premium-card">
-      <div class="lock">📈</div>
-      <h3>Monthly Growth Report</h3>
-      <p class="label">
-        See how you've progressed across different areas.
-      </p>
+  </div>
+
+  <br>
+
+  <div class="card">
+
+    <h2>Reflection 🌷</h2>
+
+    <div id="reflectionPrompt"></div>
+
+    <br>
+
+    <button class="btn" onclick="newReflection()">
+      Another question
+    </button>
+
+  </div>
+
+  <br>
+
+  <div class="card">
+
+    <h2>Need more support?</h2>
+
+    <p class="muted">
+      Polairs is a self-development and reflection space. It is not a
+      replacement for professional mental-health care.
+    </p>
+
+    <br>
+
+    <p>
+      If you feel unsafe or think you may hurt yourself, please contact
+      a trusted person or local emergency/crisis support immediately.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- JOURNAL -->
+
+<section id="journal" class="section">
+
+  <div class="card">
+
+    <h2>Journal 📖</h2>
+
+    <p class="muted">
+      Write without worrying about making it perfect.
+    </p>
+
+    <br>
+
+    <textarea
+      id="journalInput"
+      rows="8"
+      placeholder="What's on your mind today?"
+    ></textarea>
+
+    <br><br>
+
+    <button class="btn primary" onclick="saveJournal()">
+      Save reflection
+    </button>
+
+    <br><br>
+
+    <div id="journalHistory"></div>
+
+  </div>
+
+</section>
+
+<!-- JOURNEY -->
+
+<section id="journey" class="section">
+
+  <div class="card">
+
+    <h2>My Journey 🛤</h2>
+
+    <p class="muted">
+      Your progress is more than numbers.
+    </p>
+
+    <br>
+
+    <div id="journeyContent"></div>
+
+  </div>
+
+</section>
+
+<!-- PROFILE -->
+
+<section id="profile" class="section">
+
+  <div class="card">
+
+    <h2>Your Profile 👤</h2>
+
+    <br>
+
+    <div class="form-group">
+      <label>Your name</label>
+      <input id="profileName">
     </div>
+
+    <h3>Study interests</h3>
+    <div class="choice-grid" id="profileStudyChoices"></div>
+
+    <br>
+
+    <h3>Scholarship interests</h3>
+    <div class="choice-grid" id="profileScholarshipChoices"></div>
+
+    <br>
+
+    <button class="btn primary" onclick="saveProfile()">
+      Save profile
+    </button>
+
+  </div>
+
+</section>
+
+<!-- PREMIUM -->
+
+<section id="premium" class="section">
+
+  <div class="card premium">
+
+    <h2>Polairs Premium ✨</h2>
+
+    <p class="muted">
+      Deeper personalization for your growth journey.
+    </p>
+
+    <br>
+
+    <div class="grid grid-3">
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Polairs AI Guide</h3>
+        <p class="muted">Personalized guidance based on your journey.</p>
+      </div>
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Scholarship Match</h3>
+        <p class="muted">Get opportunities ranked according to your profile.</p>
+      </div>
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Advanced Insights</h3>
+        <p class="muted">Understand patterns in your habits and progress.</p>
+      </div>
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Smart Study Planner</h3>
+        <p class="muted">Build personalized study plans.</p>
+      </div>
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Monthly Growth Report</h3>
+        <p class="muted">See your progress over time.</p>
+      </div>
+
+      <div class="premium-card">
+        <span class="lock">🔒</span>
+        <h3>Growth Library</h3>
+        <p class="muted">Curated resources for your goals.</p>
+      </div>
+
+    </div>
+
+    <br>
+
+    <button class="btn primary" onclick="activatePremium()">
+      Activate Premium Demo
+    </button>
 
   </div>
 
@@ -1239,148 +1115,399 @@ textarea{
 </main>
 </div>
 
+<!-- ONBOARDING -->
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
+<div class="modal" id="onboardingModal">
 
+  <div class="modal-box">
+
+    <h2>Welcome to Polairs 🌷</h2>
+
+    <p class="muted">
+      Let's personalize your experience.
+    </p>
+
+    <br>
+
+    <div class="form-group">
+      <label>Your name</label>
+      <input id="onboardingName" placeholder="Your name">
+    </div>
+
+    <br>
+
+    <h3>What are you interested in studying?</h3>
+
+    <div class="choice-grid" id="studyChoices"></div>
+
+    <br>
+
+    <h3>What scholarship opportunities interest you?</h3>
+
+    <div class="choice-grid" id="scholarshipChoices"></div>
+
+    <br>
+
+    <button class="btn primary" onclick="completeOnboarding()">
+      Start my journey 🌷
+    </button>
+
+  </div>
+
+</div>
+
+<!-- ADD SCHOLARSHIP -->
+
+<div class="modal" id="addScholarshipModal">
+
+  <div class="modal-box">
+
+    <h2>Add an opportunity</h2>
+
+    <br>
+
+    <div class="form-group">
+      <label>Scholarship name</label>
+      <input id="customScholarshipName">
+    </div>
+
+    <div class="form-group">
+      <label>Organization</label>
+      <input id="customScholarshipOrg">
+    </div>
+
+    <div class="form-group">
+      <label>Country</label>
+      <input id="customScholarshipCountry">
+    </div>
+
+    <div class="form-group">
+      <label>Field</label>
+      <input id="customScholarshipField">
+    </div>
+
+    <div class="form-group">
+      <label>Deadline</label>
+      <input id="customScholarshipDeadline" type="date">
+    </div>
+
+    <div class="form-group">
+      <label>Official website</label>
+      <input id="customScholarshipUrl" placeholder="https://...">
+    </div>
+
+    <button class="btn primary" onclick="addCustomScholarship()">
+      Add
+    </button>
+
+    <button class="btn" onclick="closeModal('addScholarshipModal')">
+      Cancel
+    </button>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 
 /* =========================
-   DATA
+   POLAIRS DATA
 ========================= */
 
-const defaultScholarships = [
+const STUDY_INTERESTS = [
+  "Engineering",
+  "Computer Science",
+  "Medicine",
+  "Science",
+  "Business",
+  "Arts & Design",
+  "Social Sciences",
+  "Research",
+  "Technology",
+  "Environment",
+  "Mathematics",
+  "Electronics"
+];
+
+const SCHOLARSHIP_INTERESTS = [
+  "Fully funded",
+  "Undergraduate",
+  "International",
+  "STEM",
+  "Women in STEM",
+  "Research",
+  "Leadership",
+  "Exchange programs",
+  "Engineering",
+  "Study abroad"
+];
+
+/*
+ IMPORTANT:
+
+ These are SAMPLE opportunities only.
+
+ They are intentionally marked as demo data until
+ the secure scholarship backend is connected.
+*/
+
+let scholarships = [
 
   {
-    id:1,
-    name:"Global Engineering Opportunity",
+    id:"demo1",
+    name:"Global Undergraduate Opportunity",
+    organization:"Demo University",
     country:"International",
     field:"Engineering",
-    funding:"Fully Funded",
-    deadline:"2026-12-15",
-    status:"Interested"
+    funding:"Fully funded",
+    level:"Undergraduate",
+    deadline:"2027-02-15",
+    description:"Demo scholarship for testing the Polairs scholarship interface.",
+    url:"https://example.com",
+    demo:true
   },
 
   {
-    id:2,
-    name:"Young Technology Scholars Program",
-    country:"USA",
-    field:"Technology",
-    funding:"Partial",
-    deadline:"2027-01-20",
-    status:"Interested"
+    id:"demo2",
+    name:"Women in STEM Scholarship",
+    organization:"Demo Foundation",
+    country:"United States",
+    field:"STEM",
+    funding:"Partial funding",
+    level:"Undergraduate",
+    deadline:"2027-03-20",
+    description:"Demo opportunity for women interested in STEM.",
+    url:"https://example.com",
+    demo:true
   },
 
   {
-    id:3,
-    name:"International Science Program",
-    country:"Europe",
-    field:"Science",
-    funding:"Fully Funded",
-    deadline:"2027-02-10",
-    status:"Interested"
-  },
-
-  {
-    id:4,
-    name:"Future Leaders Program",
-    country:"International",
-    field:"General",
-    funding:"Fully Funded",
-    deadline:"2027-03-01",
-    status:"Interested"
+    id:"demo3",
+    name:"International Research Program",
+    organization:"Demo Institute",
+    country:"Germany",
+    field:"Research",
+    funding:"Fully funded",
+    level:"Undergraduate",
+    deadline:"2027-01-30",
+    description:"Demo research opportunity.",
+    url:"https://example.com",
+    demo:true
   }
 
 ];
 
+/* =========================
+   LOCAL STORAGE
+========================= */
 
-let data = JSON.parse(localStorage.getItem("polairsV4")) || {
+let data = JSON.parse(
+  localStorage.getItem("polairsV6")
+) || {
+
+  onboardingComplete:false,
 
   name:"",
+
+  studyInterests:[],
+
+  scholarshipInterests:[],
+
   premium:false,
 
   goals:[],
 
   habits:[
-    {id:1,title:"Drink enough water",done:false},
-    {id:2,title:"20 minutes of learning",done:false},
-    {id:3,title:"Move your body",done:false},
-    {id:4,title:"10 minutes without phone",done:false}
+    {
+      id:1,
+      title:"Drink enough water",
+      done:false,
+      streak:0
+    },
+    {
+      id:2,
+      title:"20 minutes of learning",
+      done:false,
+      streak:0
+    },
+    {
+      id:3,
+      title:"Move your body",
+      done:false,
+      streak:0
+    }
   ],
 
   tasks:[],
 
   moods:[],
 
-  reflections:[],
+  journalEntries:[],
 
-  journals:[],
+  savedScholarships:[],
 
-  scholarships:defaultScholarships,
+  scholarshipStatuses:{},
 
-  lastDate:""
+  customScholarships:[],
+
+  lastUpdated:null,
+
+  lastDay:new Date().toDateString()
 
 };
 
+function saveData(){
 
-/* =========================
-   SAVE
-========================= */
+  localStorage.setItem(
+    "polairsV6",
+    JSON.stringify(data)
+  );
 
-function save(){
-  localStorage.setItem("polairsV4",JSON.stringify(data));
 }
-
 
 /* =========================
    NAVIGATION
 ========================= */
 
-function showPage(page,button){
+function showSection(name,button){
 
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".section")
+    .forEach(section=>{
+      section.classList.remove("active");
+    });
 
-  document.getElementById(page)
+  document.getElementById(name)
     .classList.add("active");
 
   document.querySelectorAll(".nav button")
-    .forEach(b=>b.classList.remove("active"));
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
 
   if(button){
     button.classList.add("active");
   }
 
+  const titles={
+    dashboard:"Dashboard",
+    goals:"My Goals",
+    habits:"Habits",
+    study:"Study",
+    scholarships:"Scholarships",
+    wellbeing:"Well-being",
+    journal:"Journal",
+    journey:"My Journey",
+    profile:"Profile",
+    premium:"Premium"
+  };
+
+  document.getElementById("pageTitle").textContent =
+    titles[name] || "Polairs";
+
 }
 
-function showPageByName(page){
+function showSectionByName(name){
 
-  const button=[...document.querySelectorAll(".nav button")]
-    .find(b=>b.getAttribute("onclick")?.includes(`'${page}'`));
+  const btn =
+    [...document.querySelectorAll(".nav button")]
+    .find(button =>
+      button.getAttribute("onclick")?.includes(`'${name}'`)
+    );
 
-  showPage(page,button);
+  showSection(name,btn);
 
 }
-
 
 /* =========================
-   TOAST
+   ONBOARDING
 ========================= */
 
-function toast(message){
+function buildChoices(){
 
-  const el=document.getElementById("toast");
+  const studyContainer =
+    document.getElementById("studyChoices");
 
-  el.textContent=message;
-  el.classList.add("show");
+  STUDY_INTERESTS.forEach(item=>{
 
-  setTimeout(()=>{
-    el.classList.remove("show");
-  },2200);
+    const button=document.createElement("button");
+
+    button.className="choice";
+
+    button.textContent=item;
+
+    button.onclick=()=>{
+
+      button.classList.toggle("selected");
+
+    };
+
+    studyContainer.appendChild(button);
+
+  });
+
+  const scholarshipContainer =
+    document.getElementById("scholarshipChoices");
+
+  SCHOLARSHIP_INTERESTS.forEach(item=>{
+
+    const button=document.createElement("button");
+
+    button.className="choice";
+
+    button.textContent=item;
+
+    button.onclick=()=>{
+
+      button.classList.toggle("selected");
+
+    };
+
+    scholarshipContainer.appendChild(button);
+
+  });
 
 }
 
+function completeOnboarding(){
+
+  const name =
+    document.getElementById("onboardingName").value.trim();
+
+  if(!name){
+
+    toast("Tell me your name first 🌷");
+
+    return;
+
+  }
+
+  const study =
+    [...document.querySelectorAll("#studyChoices .selected")]
+    .map(x=>x.textContent);
+
+  const scholarship =
+    [...document.querySelectorAll("#scholarshipChoices .selected")]
+    .map(x=>x.textContent);
+
+  data.name=name;
+
+  data.studyInterests=study;
+
+  data.scholarshipInterests=scholarship;
+
+  data.onboardingComplete=true;
+
+  saveData();
+
+  closeModal("onboardingModal");
+
+  updateUI();
+
+  toast("Welcome to Polairs 🌷");
+
+}
 
 /* =========================
    DASHBOARD
@@ -1388,53 +1515,43 @@ function toast(message){
 
 function updateDashboard(){
 
-  const hour=new Date().getHours();
+  const name =
+    data.name || "there";
 
-  let greeting="Good evening";
+  document.getElementById("greeting").textContent =
+    `Hi ${name} 🌷`;
 
-  if(hour<12) greeting="Good morning";
-  else if(hour<18) greeting="Good afternoon";
+  document.getElementById("dashboardInterests").innerHTML =
+    [
+      ...data.studyInterests,
+      ...data.scholarshipInterests
+    ]
+    .map(x=>`<span class="tag">${x}</span>`)
+    .join("");
 
-  const name=data.name ? `, ${data.name}` : "";
+  const goalProgress =
+    calculateGoalProgress();
 
-  document.getElementById("greeting").textContent=
-    `${greeting}${name} 🌷`;
+  const habitProgress =
+    calculateHabitProgress();
 
-  document.getElementById("statGoals").textContent=
-    data.goals.length;
+  const studyProgress =
+    calculateStudyProgress();
 
-  const habitDone=data.habits.length
-    ? Math.round(
-      data.habits.filter(h=>h.done).length/
-      data.habits.length*100
-    )
-    :0;
+  document.getElementById("goalStat").textContent =
+    goalProgress+"%";
 
-  document.getElementById("statHabits").textContent=
-    habitDone+"%";
+  document.getElementById("habitStat").textContent =
+    habitProgress+"%";
 
-  const studyDone=data.tasks.length
-    ? Math.round(
-      data.tasks.filter(t=>t.done).length/
-      data.tasks.length*100
-    )
-    :0;
+  document.getElementById("studyStat").textContent =
+    studyProgress+"%";
 
-  document.getElementById("statStudy").textContent=
-    studyDone+"%";
+  renderDailyPlan();
 
-  document.getElementById("statScholarships").textContent=
-    data.scholarships.filter(s=>s.saved).length;
-
-  const goal=data.goals[0];
-
-  document.getElementById("dailyGoalText").textContent=
-    goal
-      ? `${goal.title} — ${goal.progress}% complete`
-      : "Create your first goal and start with one small step.";
+  renderDashboardScholarships();
 
 }
-
 
 /* =========================
    GOALS
@@ -1442,14 +1559,24 @@ function updateDashboard(){
 
 function addGoal(){
 
-  const title=document.getElementById("goalTitle").value.trim();
-  const category=document.getElementById("goalCategory").value.trim();
-  const milestone=document.getElementById("goalMilestone").value.trim();
+  const title =
+    document.getElementById("goalTitle").value.trim();
 
   if(!title){
-    toast("Give your goal a name first 🌷");
+
+    toast("Add a goal first 🎯");
+
     return;
+
   }
+
+  const category =
+    document.getElementById("goalCategory").value.trim()
+    || "Personal";
+
+  const milestone =
+    document.getElementById("goalMilestone").value.trim()
+    || "Take the first step";
 
   data.goals.push({
 
@@ -1457,162 +1584,112 @@ function addGoal(){
 
     title,
 
-    category:category || "Personal",
+    category,
 
-    progress:0,
+    milestone,
 
-    milestones:[
-
-      {
-        id:Date.now()+1,
-        title:milestone || "Take the first step",
-        done:false
-      },
-
-      {
-        id:Date.now()+2,
-        title:"Keep going",
-        done:false
-      },
-
-      {
-        id:Date.now()+3,
-        title:"Reach the goal",
-        done:false
-      }
-
-    ]
+    progress:0
 
   });
 
-  save();
+  saveData();
 
   document.getElementById("goalTitle").value="";
   document.getElementById("goalCategory").value="";
   document.getElementById("goalMilestone").value="";
 
   renderGoals();
+
   updateDashboard();
 
-  toast("Goal created 🌱");
+  toast("Goal added 🎯");
 
 }
-
-
-function toggleMilestone(goalId,milestoneId){
-
-  const goal=data.goals.find(g=>g.id===goalId);
-
-  if(!goal)return;
-
-  const milestone=goal.milestones.find(m=>m.id===milestoneId);
-
-  milestone.done=!milestone.done;
-
-  const completed=goal.milestones.filter(m=>m.done).length;
-
-  goal.progress=Math.round(
-    completed/goal.milestones.length*100
-  );
-
-  save();
-  renderGoals();
-  updateDashboard();
-
-}
-
-
-function deleteGoal(id){
-
-  data.goals=data.goals.filter(g=>g.id!==id);
-
-  save();
-  renderGoals();
-  updateDashboard();
-
-}
-
 
 function renderGoals(){
 
-  const container=document.getElementById("goalsList");
+  const container =
+    document.getElementById("goalList");
 
   if(!data.goals.length){
 
-    container.innerHTML=`
-      <div class="card">
-        <h3>No goals yet 🌱</h3>
-        <p class="label">
-          Start with something meaningful to you.
-        </p>
-      </div>
-    `;
+    container.innerHTML=
+      `<p class="muted">No goals yet. Start with one small thing.</p>`;
 
     return;
+
   }
 
-  container.innerHTML=data.goals.map(goal=>`
+  container.innerHTML =
+    data.goals.map(goal=>`
 
-    <div class="card">
+      <div class="goal">
 
-      <div style="display:flex;justify-content:space-between;gap:10px">
+        <h3>${escapeHTML(goal.title)}</h3>
 
-        <div>
-          <h3>${escapeHTML(goal.title)}</h3>
-          <p class="label">${escapeHTML(goal.category)}</p>
+        <p class="muted">
+          ${escapeHTML(goal.category)}
+        </p>
+
+        <div class="progress">
+          <div
+            class="progress-bar"
+            style="width:${goal.progress}%"
+          ></div>
         </div>
 
+        <small>
+          ${goal.progress}% · Next: ${escapeHTML(goal.milestone)}
+        </small>
+
+        <br><br>
+
         <button
-          class="btn danger small"
-          onclick="deleteGoal(${goal.id})">
+          class="btn small"
+          onclick="increaseGoal(${goal.id})"
+        >
+          +10%
+        </button>
+
+        <button
+          class="btn small danger"
+          onclick="deleteGoal(${goal.id})"
+        >
           Delete
         </button>
 
       </div>
 
-      <br>
-
-      <div class="progress">
-        <div style="width:${goal.progress}%"></div>
-      </div>
-
-      <p class="label">
-        ${goal.progress}% complete
-      </p>
-
-      <h4>Milestones</h4>
-
-      <div class="list">
-
-        ${goal.milestones.map(m=>`
-
-          <div class="list-item">
-
-            <div>
-              <h4>
-                ${m.done ? "✓ " : ""}
-                ${escapeHTML(m.title)}
-              </h4>
-            </div>
-
-            <button
-              class="btn ${m.done ? "secondary" : ""} small"
-              onclick="toggleMilestone(${goal.id},${m.id})">
-              ${m.done ? "Completed" : "Complete"}
-            </button>
-
-          </div>
-
-        `).join("")}
-
-      </div>
-
-    </div>
-
-  `).join("");
+    `).join("");
 
 }
 
+function increaseGoal(id){
+
+  const goal =
+    data.goals.find(x=>x.id===id);
+
+  if(!goal)return;
+
+  goal.progress =
+    Math.min(100,goal.progress+10);
+
+  saveData();
+
+  updateUI();
+
+}
+
+function deleteGoal(id){
+
+  data.goals =
+    data.goals.filter(x=>x.id!==id);
+
+  saveData();
+
+  updateUI();
+
+}
 
 /* =========================
    HABITS
@@ -1620,83 +1697,103 @@ function renderGoals(){
 
 function addHabit(){
 
-  const input=document.getElementById("habitInput");
-  const title=input.value.trim();
+  const input =
+    document.getElementById("newHabit");
+
+  const title =
+    input.value.trim();
 
   if(!title)return;
 
   data.habits.push({
+
     id:Date.now(),
+
     title,
-    done:false
+
+    done:false,
+
+    streak:0
+
   });
 
   input.value="";
 
-  save();
-  renderHabits();
-  updateDashboard();
+  saveData();
 
-  toast("Habit added 🔥");
+  updateUI();
+
+  toast("Habit added 🌱");
 
 }
 
-
 function toggleHabit(id){
 
-  const habit=data.habits.find(h=>h.id===id);
+  const habit =
+    data.habits.find(x=>x.id===id);
 
   if(!habit)return;
 
   habit.done=!habit.done;
 
-  save();
-  renderHabits();
-  updateDashboard();
+  if(habit.done){
+
+    habit.streak++;
+
+  }else{
+
+    habit.streak =
+      Math.max(0,habit.streak-1);
+
+  }
+
+  saveData();
+
+  updateUI();
 
 }
-
 
 function renderHabits(){
 
-  const container=document.getElementById("habitsList");
+  const container =
+    document.getElementById("habitList");
 
-  container.innerHTML=data.habits.map(h=>`
+  container.innerHTML =
+    data.habits.map(habit=>`
 
-    <div class="list-item">
+      <div class="habit ${habit.done?"done":""}">
 
-      <div>
-        <h4>${h.done ? "✓ " : ""}${escapeHTML(h.title)}</h4>
-        <p>${h.done ? "Done for today 🌷" : "Not completed yet"}</p>
+        <div>
+          <strong>${escapeHTML(habit.title)}</strong>
+          <div class="muted">
+            ${habit.streak} day streak
+          </div>
+        </div>
+
+        <button
+          class="check"
+          onclick="toggleHabit(${habit.id})"
+        >
+          ${habit.done?"✓":"+"}
+        </button>
+
       </div>
 
-      <button
-        class="btn ${h.done ? "secondary" : ""}"
-        onclick="toggleHabit(${h.id})">
-
-        ${h.done ? "Completed" : "Complete"}
-
-      </button>
-
-    </div>
-
-  `).join("");
+    `).join("");
 
 }
-
 
 /* =========================
    STUDY
 ========================= */
 
-function addTask(){
+function addStudyTask(){
 
-  const title=document.getElementById("taskTitle").value.trim();
+  const title =
+    document.getElementById("studyTitle")
+      .value.trim();
 
-  if(!title){
-    toast("Add a study task first 📚");
-    return;
-  }
+  if(!title)return;
 
   data.tasks.push({
 
@@ -1704,589 +1801,757 @@ function addTask(){
 
     title,
 
-    subject:document.getElementById("taskSubject").value.trim() || "General",
+    subject:
+      document.getElementById("studySubject")
+        .value.trim() || "General",
 
-    time:document.getElementById("taskTime").value.trim() || "Not specified",
-
-    date:document.getElementById("taskDate").value,
-
-    priority:document.getElementById("taskPriority").value,
+    time:
+      document.getElementById("studyTime")
+        .value.trim() || "30 minutes",
 
     done:false
 
   });
 
-  save();
+  document.getElementById("studyTitle").value="";
+  document.getElementById("studySubject").value="";
+  document.getElementById("studyTime").value="";
 
-  document.getElementById("taskTitle").value="";
-  document.getElementById("taskSubject").value="";
-  document.getElementById("taskTime").value="";
+  saveData();
 
-  renderStudy();
-  updateDashboard();
-
-  toast("Study task added 📚");
+  updateUI();
 
 }
 
+function toggleStudy(id){
 
-function toggleTask(id){
-
-  const task=data.tasks.find(t=>t.id===id);
+  const task =
+    data.tasks.find(x=>x.id===id);
 
   if(!task)return;
 
   task.done=!task.done;
 
-  save();
-  renderStudy();
-  updateDashboard();
+  saveData();
+
+  updateUI();
 
 }
-
-
-function deleteTask(id){
-
-  data.tasks=data.tasks.filter(t=>t.id!==id);
-
-  save();
-  renderStudy();
-  updateDashboard();
-
-}
-
 
 function renderStudy(){
 
-  const container=document.getElementById("studyList");
+  const container =
+    document.getElementById("studyList");
 
   if(!data.tasks.length){
 
-    container.innerHTML=`
-      <div class="card">
-        <h3>Your study plan is empty 🌱</h3>
-        <p class="label">
-          Add one task instead of trying to study everything at once.
-        </p>
-      </div>
-    `;
+    container.innerHTML=
+      `<p class="muted">No study tasks yet.</p>`;
 
-    return;
+  }else{
+
+    container.innerHTML =
+      data.tasks.map(task=>`
+
+        <div class="goal">
+
+          <h3>${escapeHTML(task.title)}</h3>
+
+          <p class="muted">
+            ${escapeHTML(task.subject)} ·
+            ${escapeHTML(task.time)}
+          </p>
+
+          <button
+            class="btn small"
+            onclick="toggleStudy(${task.id})"
+          >
+            ${task.done?"✓ Completed":"Mark complete"}
+          </button>
+
+        </div>
+
+      `).join("");
+
   }
 
-  container.innerHTML=data.tasks.map(t=>`
+  document.getElementById("recommendedStudy").innerHTML =
+    data.studyInterests.length
 
-    <div class="list-item">
+      ? data.studyInterests
+          .map(x=>`<span class="tag">${x}</span>`)
+          .join(" ")
 
-      <div>
-
-        <h4>
-          ${t.done ? "✓ " : ""}
-          ${escapeHTML(t.title)}
-        </h4>
-
-        <p>
-          ${escapeHTML(t.subject)}
-          · ${escapeHTML(t.time)}
-          ${t.date ? " · "+t.date : ""}
-        </p>
-
-        <br>
-
-        <span class="status">
-          ${escapeHTML(t.priority)} priority
-        </span>
-
-      </div>
-
-      <div style="display:flex;gap:7px">
-
-        <button
-          class="btn ${t.done ? "secondary" : ""} small"
-          onclick="toggleTask(${t.id})">
-          ${t.done ? "Completed" : "Complete"}
-        </button>
-
-        <button
-          class="btn danger small"
-          onclick="deleteTask(${t.id})">
-          Delete
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
+      : `<p class="muted">
+          Add study interests in your profile.
+        </p>`;
 
 }
 
-
 /* =========================
-   SCHOLARSHIPS
+   SCHOLARSHIP ENGINE
 ========================= */
 
-function toggleScholarshipSave(id){
+function allScholarships(){
 
-  const scholarship=data.scholarships.find(s=>s.id===id);
+  return [
+    ...scholarships,
+    ...data.customScholarships
+  ];
 
-  if(!scholarship)return;
+}
 
-  scholarship.saved=!scholarship.saved;
+function isExpired(scholarship){
 
-  save();
+  if(!scholarship.deadline)return false;
 
-  renderScholarships();
-  renderApplications();
-  updateDashboard();
+  return new Date(scholarship.deadline) <
+    new Date(new Date().setHours(0,0,0,0));
 
-  toast(
-    scholarship.saved
-      ? "Saved to your opportunities 🎓"
-      : "Removed from saved opportunities"
+}
+
+function scholarshipMatchesUser(s){
+
+  const interests=[
+    ...data.studyInterests,
+    ...data.scholarshipInterests
+  ]
+  .map(x=>x.toLowerCase());
+
+  const text=`
+
+    ${s.field}
+    ${s.funding}
+    ${s.level}
+    ${s.country}
+    ${s.name}
+
+  `.toLowerCase();
+
+  return interests.some(
+    interest=>text.includes(interest)
   );
 
 }
 
+function formatDate(date){
 
-function changeScholarshipStatus(id){
+  if(!date)return "No deadline listed";
 
-  const scholarship=data.scholarships.find(s=>s.id===id);
-
-  if(!scholarship)return;
-
-  const statuses=[
-    "Interested",
-    "Preparing",
-    "Applied",
-    "Accepted",
-    "Rejected"
-  ];
-
-  const current=statuses.indexOf(scholarship.status);
-
-  scholarship.status=
-    statuses[(current+1)%statuses.length];
-
-  save();
-
-  renderScholarships();
-  renderApplications();
+  return new Date(date).toLocaleDateString(
+    undefined,
+    {
+      year:"numeric",
+      month:"short",
+      day:"numeric"
+    }
+  );
 
 }
 
+function daysUntil(date){
 
-function renderScholarships(){
+  const today =
+    new Date();
 
-  const container=document.getElementById("scholarshipGrid");
+  const deadline =
+    new Date(date);
 
-  const search=
-    document.getElementById("scholarshipSearch")
-      .value.toLowerCase();
+  today.setHours(0,0,0,0);
+  deadline.setHours(0,0,0,0);
 
-  const country=
-    document.getElementById("countryFilter").value;
-
-  const field=
-    document.getElementById("fieldFilter").value;
-
-  const funding=
-    document.getElementById("fundingFilter").value;
-
-  const filtered=data.scholarships.filter(s=>{
-
-    const matchesSearch=
-      s.name.toLowerCase().includes(search);
-
-    const matchesCountry=
-      !country || s.country===country;
-
-    const matchesField=
-      !field || s.field===field;
-
-    const matchesFunding=
-      !funding || s.funding===funding;
-
-    return matchesSearch &&
-           matchesCountry &&
-           matchesField &&
-           matchesFunding;
-
-  });
-
-
-  if(!filtered.length){
-
-    container.innerHTML=`
-      <div class="card">
-        <h3>No matching opportunities.</h3>
-        <p class="label">
-          Try changing the filters or add your own opportunity.
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML=filtered.map(s=>`
-
-    <div class="card scholarship-card">
-
-      <div class="scholarship-header">
-
-        <div>
-          <h3>${escapeHTML(s.name)}</h3>
-          <p class="label">${escapeHTML(s.country)}</p>
-        </div>
-
-        <button
-          class="star"
-          onclick="toggleScholarshipSave(${s.id})">
-
-          ${s.saved ? "⭐" : "☆"}
-
-        </button>
-
-      </div>
-
-      <div class="scholarship-meta">
-
-        <span>${escapeHTML(s.field)}</span>
-
-        <span>${escapeHTML(s.funding)}</span>
-
-        <span>
-          Deadline:
-          ${escapeHTML(s.deadline || "Not specified")}
-        </span>
-
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center">
-
-        <span class="status ${s.status.toLowerCase()}">
-          ${escapeHTML(s.status)}
-        </span>
-
-        <button
-          class="btn secondary small"
-          onclick="changeScholarshipStatus(${s.id})">
-
-          Change status
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
+  return Math.ceil(
+    (deadline-today)/(1000*60*60*24)
+  );
 
 }
 
+function scholarshipStatus(id){
 
-function renderApplications(){
-
-  const container=document.getElementById("applicationTracker");
-
-  const saved=data.scholarships.filter(s=>s.saved);
-
-  if(!saved.length){
-
-    container.innerHTML=`
-      <div class="card">
-        <h3>No saved opportunities yet 🎓</h3>
-        <p class="label">
-          Star an opportunity above to add it here.
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML=saved.map(s=>`
-
-    <div class="list-item">
-
-      <div>
-        <h4>${escapeHTML(s.name)}</h4>
-        <p>
-          ${escapeHTML(s.country)}
-          · Deadline: ${escapeHTML(s.deadline || "—")}
-        </p>
-      </div>
-
-      <span class="status ${s.status.toLowerCase()}">
-        ${escapeHTML(s.status)}
-      </span>
-
-    </div>
-
-  `).join("");
+  return data.scholarshipStatuses[id] || "";
 
 }
 
+function saveScholarship(id){
 
-function addScholarship(){
+  if(data.savedScholarships.includes(id)){
 
-  const name=document.getElementById("newScholarshipName").value.trim();
+    data.savedScholarships =
+      data.savedScholarships.filter(x=>x!==id);
 
-  if(!name){
-
-    toast("Give the opportunity a name 🎓");
-
-    return;
-  }
-
-
-  data.scholarships.push({
-
-    id:Date.now(),
-
-    name,
-
-    country:
-      document.getElementById("newScholarshipCountry").value.trim()
-      || "International",
-
-    field:
-      document.getElementById("newScholarshipField").value.trim()
-      || "General",
-
-    funding:
-      document.getElementById("newScholarshipFunding").value,
-
-    deadline:
-      document.getElementById("newScholarshipDeadline").value,
-
-    status:"Interested",
-
-    saved:true
-
-  });
-
-
-  save();
-
-  document.getElementById("newScholarshipName").value="";
-  document.getElementById("newScholarshipCountry").value="";
-  document.getElementById("newScholarshipField").value="";
-  document.getElementById("newScholarshipDeadline").value="";
-
-  renderScholarships();
-  renderApplications();
-  updateDashboard();
-
-  toast("Opportunity added 🎓");
-
-}
-
-
-/* =========================
-   WELL-BEING
-========================= */
-
-function checkMood(mood,emoji,score){
-
-  const today=new Date().toLocaleDateString();
-
-  const existing=data.moods.find(m=>m.date===today);
-
-  if(existing){
-
-    existing.mood=mood;
-    existing.emoji=emoji;
-    existing.score=score;
+    toast("Removed from saved");
 
   }else{
 
-    data.moods.push({
-      date:today,
-      mood,
-      emoji,
-      score
-    });
+    data.savedScholarships.push(id);
+
+    toast("Scholarship saved ⭐");
 
   }
 
-  save();
+  saveData();
 
-  document.getElementById("moodMessage").textContent=
-    `You checked in as ${mood} ${emoji}. Thank you for checking in with yourself.`;
-
-  renderMoodBars();
-  updateJourney();
-
-  toast("Check-in saved 🌷");
+  renderScholarships();
 
 }
 
+function setScholarshipStatus(id,status){
 
-function renderMoodBars(){
+  data.scholarshipStatuses[id]=status;
 
-  const container=document.getElementById("moodBars");
+  saveData();
 
-  const moods=data.moods.slice(-7);
+  renderScholarships();
 
-  if(!moods.length){
+  toast(`Status: ${status}`);
+
+}
+
+function renderScholarships(){
+
+  const container =
+    document.getElementById("scholarshipList");
+
+  const search =
+    document.getElementById("scholarshipSearch")
+      .value.toLowerCase();
+
+  const country =
+    document.getElementById("countryFilter").value;
+
+  const field =
+    document.getElementById("fieldFilter").value;
+
+  const status =
+    document.getElementById("statusFilter").value;
+
+  const available =
+    allScholarships()
+      .filter(s=>!isExpired(s))
+      .filter(s=>{
+
+        const searchable=`
+
+          ${s.name}
+          ${s.organization}
+          ${s.country}
+          ${s.field}
+          ${s.funding}
+          ${s.level}
+
+        `.toLowerCase();
+
+        return searchable.includes(search);
+
+      })
+      .filter(s=>
+        country==="all" ||
+        s.country===country
+      )
+      .filter(s=>
+        field==="all" ||
+        s.field===field
+      )
+      .filter(s=>{
+
+        if(status==="all")return true;
+
+        if(status==="saved")
+          return data.savedScholarships.includes(s.id);
+
+        if(status==="applied")
+          return scholarshipStatus(s.id)==="Applied";
+
+        return true;
+
+      });
+
+  if(!available.length){
 
     container.innerHTML=`
-      <p class="label">
-        Your mood history will appear here after your first check-in.
-      </p>
+
+      <div class="card" style="box-shadow:none">
+
+        <h3>No matching scholarships found.</h3>
+
+        <p class="muted">
+          Try changing your filters or search terms.
+        </p>
+
+      </div>
+
     `;
 
     return;
+
   }
 
+  container.innerHTML =
+    available.map(s=>{
 
-  container.innerHTML=moods.map(m=>`
+      const saved =
+        data.savedScholarships.includes(s.id);
 
-    <div class="mood-bar-wrap">
+      const matched =
+        scholarshipMatchesUser(s);
 
-      <div
-        class="mood-bar"
-        style="height:${m.score*18}%"
-        title="${escapeHTML(m.mood)}">
-      </div>
+      const days =
+        s.deadline
+          ? daysUntil(s.deadline)
+          : null;
 
-      <div>${m.emoji}</div>
+      return `
 
-      <div class="mood-day">
-        ${escapeHTML(m.date.slice(0,5))}
-      </div>
+        <div class="card scholarship-card">
 
-    </div>
+          ${matched
+            ? `<span class="match">MATCHED FOR YOU</span>`
+            : ""
+          }
 
-  `).join("");
+          <div class="scholarship-header">
+
+            <div>
+
+              <div class="scholarship-title">
+                ${escapeHTML(s.name)}
+              </div>
+
+              <p class="muted">
+                ${escapeHTML(s.organization)}
+              </p>
+
+            </div>
+
+            <button
+              class="star ${saved?"saved":""}"
+              onclick="saveScholarship('${s.id}')"
+            >
+              ${saved?"★":"☆"}
+            </button>
+
+          </div>
+
+          <div class="scholarship-meta">
+
+            <span class="meta">
+              🌍 ${escapeHTML(s.country || "International")}
+            </span>
+
+            <span class="meta">
+              🎓 ${escapeHTML(s.field || "Various fields")}
+            </span>
+
+            <span class="meta">
+              💰 ${escapeHTML(s.funding || "Funding varies")}
+            </span>
+
+            <span class="meta">
+              📚 ${escapeHTML(s.level || "Various levels")}
+            </span>
+
+          </div>
+
+          <p>
+            ${escapeHTML(
+              s.description ||
+              "Scholarship opportunity."
+            )}
+          </p>
+
+          <div class="deadline
+            ${days!==null && days<=30 ? "soon":""}
+          ">
+
+            📅 Deadline:
+            <strong>
+              ${formatDate(s.deadline)}
+            </strong>
+
+            ${
+              days!==null && days>=0
+                ? ` · ${days} days left`
+                : ""
+            }
+
+          </div>
+
+          ${
+            s.demo
+              ? `
+                <small class="muted">
+                  ⚠ Demo opportunity — waiting for live data connection
+                </small>
+              `
+              : ""
+          }
+
+          <div class="scholarship-actions">
+
+            <select
+              class="status-select"
+              onchange="
+                setScholarshipStatus(
+                  '${s.id}',
+                  this.value
+                )
+              "
+            >
+
+              <option value="">
+                Application status
+              </option>
+
+              <option
+                ${scholarshipStatus(s.id)==="Interested"?"selected":""}
+              >
+                Interested
+              </option>
+
+              <option
+                ${scholarshipStatus(s.id)==="Preparing"?"selected":""}
+              >
+                Preparing
+              </option>
+
+              <option
+                ${scholarshipStatus(s.id)==="Applied"?"selected":""}
+              >
+                Applied
+              </option>
+
+              <option
+                ${scholarshipStatus(s.id)==="Accepted"?"selected":""}
+              >
+                Accepted
+              </option>
+
+              <option
+                ${scholarshipStatus(s.id)==="Rejected"?"selected":""}
+              >
+                Rejected
+              </option>
+
+            </select>
+
+            <a
+              href="${escapeAttribute(s.url)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn primary"
+            >
+              Official website ↗
+            </a>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
 
 }
 
+function populateScholarshipFilters(){
 
-const reflections=[
+  const active =
+    allScholarships()
+      .filter(s=>!isExpired(s));
 
-  "What's one thing that has been taking up space in your mind lately?",
+  const countries =
+    [...new Set(
+      active
+        .map(s=>s.country)
+        .filter(Boolean)
+    )]
+    .sort();
 
-  "What is something you wish someone understood about you?",
+  const fields =
+    [...new Set(
+      active
+        .map(s=>s.field)
+        .filter(Boolean)
+    )]
+    .sort();
 
-  "What made you feel proud of yourself recently?",
+  document.getElementById("countryFilter").innerHTML =
+    `<option value="all">All countries</option>`+
+    countries
+      .map(x=>`
+        <option value="${escapeAttribute(x)}">
+          ${escapeHTML(x)}
+        </option>
+      `)
+      .join("");
 
-  "What is something you can let yourself do imperfectly?",
-
-  "What is one small thing that could make tomorrow easier?",
-
-  "When did you last feel genuinely calm?",
-
-  "What do you need more of in your life right now?"
-
-];
-
-
-function newReflection(){
-
-  const random=
-    reflections[Math.floor(Math.random()*reflections.length)];
-
-  document.getElementById("reflectionPrompt").textContent=random;
+  document.getElementById("fieldFilter").innerHTML =
+    `<option value="all">All fields</option>`+
+    fields
+      .map(x=>`
+        <option value="${escapeAttribute(x)}">
+          ${escapeHTML(x)}
+        </option>
+      `)
+      .join("");
 
 }
 
+function renderDashboardScholarships(){
 
-function saveReflection(){
+  const container =
+    document.getElementById("dashboardScholarships");
 
-  const text=
-    document.getElementById("reflectionText").value.trim();
+  const matches =
+    allScholarships()
+      .filter(s=>!isExpired(s))
+      .filter(s=>scholarshipMatchesUser(s))
+      .slice(0,3);
 
-  if(!text){
+  if(!matches.length){
 
-    toast("Write something first 🌷");
+    container.innerHTML=
+      `<p class="muted">
+        No matching opportunities yet.
+      </p>`;
 
     return;
+
   }
 
-  data.reflections.push({
+  container.innerHTML =
+    matches.map(s=>`
 
-    id:Date.now(),
+      <div class="goal">
 
-    date:new Date().toLocaleDateString(),
+        <strong>${escapeHTML(s.name)}</strong>
 
-    text
+        <p class="muted">
+          ${escapeHTML(s.country)}
+          ·
+          ${escapeHTML(s.field)}
+        </p>
+
+        <small>
+          Deadline: ${formatDate(s.deadline)}
+        </small>
+
+      </div>
+
+    `).join("");
+
+}
+
+/*
+ This is where the REAL API will be connected.
+
+ We intentionally do NOT put an API key here.
+
+ Later:
+
+ Polairs frontend
+       ↓
+ Secure backend
+       ↓
+ Scholarship API
+       ↓
+ Current scholarship data
+       ↓
+ Polairs
+
+*/
+
+async function refreshScholarships(){
+
+  toast("Refreshing scholarship data...");
+
+  /*
+    PLACEHOLDER FOR SECURE BACKEND
+
+    Example later:
+
+    const response =
+      await fetch("/api/scholarships");
+
+    const result =
+      await response.json();
+
+    scholarships =
+      result.scholarships;
+
+  */
+
+  data.lastUpdated =
+    new Date().toISOString();
+
+  saveData();
+
+  updateScholarshipTimestamp();
+
+  renderScholarships();
+
+  toast(
+    "Frontend refreshed. Live data connection comes next."
+  );
+
+}
+
+function updateScholarshipTimestamp(){
+
+  const element =
+    document.getElementById("scholarshipUpdated");
+
+  if(!data.lastUpdated){
+
+    element.textContent =
+      "No live update yet — demo data is currently shown.";
+
+    return;
+
+  }
+
+  const date =
+    new Date(data.lastUpdated);
+
+  element.textContent =
+    `Last refreshed: ${date.toLocaleString()}`;
+
+}
+
+/* =========================
+   WELLBEING
+========================= */
+
+function addMood(mood,emoji){
+
+  data.moods.unshift({
+
+    date:new Date().toISOString(),
+
+    mood,
+
+    emoji
 
   });
 
-  save();
+  data.moods =
+    data.moods.slice(0,7);
 
-  document.getElementById("reflectionText").value="";
+  saveData();
 
-  toast("Reflection saved 🌷");
+  renderMoodHistory();
+
+  toast("Check-in saved 💜");
 
 }
 
+function renderMoodHistory(){
 
-function startBreathing(){
+  const container =
+    document.getElementById("moodHistory");
 
-  const messages=[
-    "Breathe in slowly for 4 seconds.",
-    "Hold gently for 4 seconds.",
-    "Breathe out slowly for 4 seconds.",
-    "Pause for 4 seconds.",
-    "You can repeat that a few times."
+  if(!data.moods.length){
+
+    container.innerHTML=
+      `<p class="muted">No check-ins yet.</p>`;
+
+    return;
+
+  }
+
+  container.innerHTML =
+    data.moods
+      .slice(0,7)
+      .map((m,index)=>`
+
+        <div
+          class="mood-bar"
+          title="${m.mood}"
+          style="height:${30+(7-index)*12}px"
+        >
+          <div style="
+            text-align:center;
+            transform:translateY(-25px);
+          ">
+            ${m.emoji}
+          </div>
+        </div>
+
+      `)
+      .join("");
+
+}
+
+function breathing(){
+
+  const text =
+    document.getElementById("breathingText");
+
+  let steps=[
+    "Breathe in... 🌿",
+    "Hold... 🌷",
+    "Breathe out... 💜"
   ];
 
   let i=0;
 
-  const interval=setInterval(()=>{
+  text.textContent=steps[0];
 
-    toast(messages[i]);
+  const interval =
+    setInterval(()=>{
 
-    i++;
+      i++;
 
-    if(i>=messages.length){
-      clearInterval(interval);
-    }
+      if(i>=steps.length){
 
-  },3000);
+        clearInterval(interval);
 
-  toast(messages[0]);
+        text.textContent=
+          "You did it. Take one more calm breath. 🌷";
 
-}
+        return;
 
+      }
 
-function groundingPrompt(){
+      text.textContent=steps[i];
 
-  toast("Look around and name 5 things you can see.");
-
-  setTimeout(()=>{
-    toast("Now notice 4 things you can physically feel.");
-  },3500);
-
-  setTimeout(()=>{
-    toast("Then notice 3 sounds around you.");
-  },7000);
+    },3000);
 
 }
 
-
-function smallReset(){
-
-  const resets=[
-    "Drink some water 💧",
-    "Stretch your shoulders 🌿",
-    "Look away from your screen for a minute 👀",
-    "Take three slow breaths 🌬️",
-    "Open a window if you can 🌷"
-  ];
+function grounding(){
 
   toast(
-    resets[Math.floor(Math.random()*resets.length)]
+    "Look around and name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste. 🌿"
   );
 
 }
 
+const reflections=[
+
+  "What is one thing that went slightly better today?",
+
+  "What is something you need to give yourself permission to feel?",
+
+  "What is one small thing you can do for yourself today?",
+
+  "What are you proud of yourself for?",
+
+  "What is taking up most of your mental space right now?"
+
+];
+
+function newReflection(){
+
+  const prompt =
+    reflections[
+      Math.floor(Math.random()*reflections.length)
+    ];
+
+  document.getElementById("reflectionPrompt").innerHTML=
+    `<h3>${prompt}</h3>`;
+
+}
 
 /* =========================
    JOURNAL
@@ -2294,177 +2559,226 @@ function smallReset(){
 
 function saveJournal(){
 
-  const title=
-    document.getElementById("journalTitle").value.trim();
+  const input =
+    document.getElementById("journalInput");
 
-  const text=
-    document.getElementById("journalText").value.trim();
+  const text =
+    input.value.trim();
 
-  if(!text){
+  if(!text)return;
 
-    toast("Write something first 📖");
+  data.journalEntries.unshift({
 
-    return;
-  }
+    date:new Date().toISOString(),
 
-  data.journals.unshift({
-
-    id:Date.now(),
-
-    title:title || "Untitled reflection",
-
-    text,
-
-    date:new Date().toLocaleDateString()
+    text
 
   });
 
-  save();
+  data.journalEntries =
+    data.journalEntries.slice(0,30);
 
-  document.getElementById("journalTitle").value="";
-  document.getElementById("journalText").value="";
+  input.value="";
 
-  renderJournal();
-
-  toast("Journal entry saved 📖");
-
-}
-
-
-function deleteJournal(id){
-
-  data.journals=
-    data.journals.filter(j=>j.id!==id);
-
-  save();
+  saveData();
 
   renderJournal();
 
-}
+  toast("Reflection saved 📖");
 
+}
 
 function renderJournal(){
 
-  const container=
+  const container =
     document.getElementById("journalHistory");
 
-  if(!data.journals.length){
+  if(!data.journalEntries.length){
 
-    container.innerHTML=`
-      <div class="card">
-        <h3>No entries yet 🌷</h3>
-        <p class="label">
-          Your thoughts can stay here whenever you need to write.
-        </p>
-      </div>
-    `;
+    container.innerHTML=
+      `<p class="muted">Your reflections will appear here.</p>`;
 
     return;
+
   }
 
+  container.innerHTML =
+    data.journalEntries
+      .map(entry=>`
 
-  container.innerHTML=data.journals.map(j=>`
+        <div class="goal">
 
-    <div class="list-item">
+          <small class="muted">
+            ${new Date(entry.date).toLocaleDateString()}
+          </small>
 
-      <div>
+          <p style="margin-top:8px">
+            ${escapeHTML(entry.text)}
+          </p>
 
-        <h4>${escapeHTML(j.title)}</h4>
-
-        <p>${escapeHTML(j.date)}</p>
-
-        <br>
-
-        <div style="line-height:1.6">
-          ${escapeHTML(j.text)}
         </div>
 
-      </div>
-
-      <button
-        class="btn danger small"
-        onclick="deleteJournal(${j.id})">
-        Delete
-      </button>
-
-    </div>
-
-  `).join("");
+      `)
+      .join("");
 
 }
-
 
 /* =========================
    JOURNEY
 ========================= */
 
-function calculateOverall(){
+function renderJourney(){
 
-  const goalProgress=data.goals.length
-    ? data.goals.reduce((sum,g)=>sum+g.progress,0)/
+  const container =
+    document.getElementById("journeyContent");
+
+  const goalProgress =
+    calculateGoalProgress();
+
+  const habitProgress =
+    calculateHabitProgress();
+
+  const studyProgress =
+    calculateStudyProgress();
+
+  container.innerHTML=`
+
+    <div class="grid grid-3">
+
+      <div class="card" style="box-shadow:none">
+        <h3>🎯 Goals</h3>
+        <div class="stat-number">
+          ${goalProgress}%
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none">
+        <h3>🌱 Habits</h3>
+        <div class="stat-number">
+          ${habitProgress}%
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none">
+        <h3>📚 Study</h3>
+        <div class="stat-number">
+          ${studyProgress}%
+        </div>
+      </div>
+
+    </div>
+
+    <br>
+
+    <h3>Your journey so far</h3>
+
+    <br>
+
+    <p>🌷 Started your Polairs journey</p>
+
+    ${
       data.goals.length
-    :0;
+        ? `<p>🎯 Created ${data.goals.length} goal(s)</p>`
+        : ""
+    }
 
-  const habitProgress=data.habits.length
-    ? data.habits.filter(h=>h.done).length/
-      data.habits.length*100
-    :0;
+    ${
+      data.moods.length
+        ? `<p>💜 Completed ${data.moods.length} mood check-in(s)</p>`
+        : ""
+    }
 
-  const studyProgress=data.tasks.length
-    ? data.tasks.filter(t=>t.done).length/
-      data.tasks.length*100
-    :0;
+    ${
+      data.journalEntries.length
+        ? `<p>📖 Written ${data.journalEntries.length} reflection(s)</p>`
+        : ""
+    }
 
-  return Math.round(
-    (goalProgress+habitProgress+studyProgress)/3
+    ${
+      data.savedScholarships.length
+        ? `<p>⭐ Saved ${data.savedScholarships.length} scholarship(s)</p>`
+        : ""
+    }
+
+  `;
+
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+function renderProfile(){
+
+  document.getElementById("profileName").value =
+    data.name || "";
+
+  renderProfileChoices(
+    "profileStudyChoices",
+    STUDY_INTERESTS,
+    data.studyInterests
+  );
+
+  renderProfileChoices(
+    "profileScholarshipChoices",
+    SCHOLARSHIP_INTERESTS,
+    data.scholarshipInterests
   );
 
 }
 
+function renderProfileChoices(
+  containerId,
+  options,
+  selected
+){
 
-function updateJourney(){
+  const container =
+    document.getElementById(containerId);
 
-  const overall=calculateOverall();
+  container.innerHTML =
+    options.map(option=>`
 
-  document.getElementById("journeyProgress")
-    .style.width=overall+"%";
+      <button
+        class="choice ${
+          selected.includes(option)
+            ? "selected"
+            : ""
+        }"
+        onclick="this.classList.toggle('selected')"
+      >
+        ${option}
+      </button>
 
-  document.getElementById("journeyText")
-    .textContent=
-      `${overall}% overall progress`;
-
-  document.getElementById("journeyGoals")
-    .textContent=
-      `${data.goals.length} goal${data.goals.length===1?"":"s"}`;
-
-  const habits=data.habits.length
-    ? Math.round(
-      data.habits.filter(h=>h.done).length/
-      data.habits.length*100
-    )
-    :0;
-
-  document.getElementById("journeyHabits")
-    .textContent=
-      `${habits}% today`;
-
-  const study=data.tasks.length
-    ? Math.round(
-      data.tasks.filter(t=>t.done).length/
-      data.tasks.length*100
-    )
-    :0;
-
-  document.getElementById("journeyStudy")
-    .textContent=
-      `${study}% study progress`;
-
-  document.getElementById("journeyMoods")
-    .textContent=
-      `${data.moods.length} check-in${data.moods.length===1?"":"s"}`;
+    `).join("");
 
 }
 
+function saveProfile(){
+
+  data.name =
+    document.getElementById("profileName")
+      .value.trim();
+
+  data.studyInterests =
+    [...document.querySelectorAll(
+      "#profileStudyChoices .selected"
+    )]
+    .map(x=>x.textContent.trim());
+
+  data.scholarshipInterests =
+    [...document.querySelectorAll(
+      "#profileScholarshipChoices .selected"
+    )]
+    .map(x=>x.textContent.trim());
+
+  saveData();
+
+  updateUI();
+
+  toast("Profile updated 🌷");
+
+}
 
 /* =========================
    PREMIUM
@@ -2474,56 +2788,224 @@ function activatePremium(){
 
   data.premium=true;
 
-  save();
+  saveData();
 
-  toast("Premium Demo activated 💎");
+  toast("Premium Demo activated ✨");
 
 }
 
-
 /* =========================
-   DARK MODE
+   DAILY PLAN
 ========================= */
 
-function toggleDark(){
+function renderDailyPlan(){
 
-  const root=document.documentElement;
+  const container =
+    document.getElementById("dailyPlan");
 
-  const dark=
-    getComputedStyle(root)
-      .getPropertyValue("--bg")
-      .trim()==="#111";
+  const plan=[];
 
-  if(!dark){
+  if(data.habits.some(x=>!x.done)){
 
-    root.style.setProperty("--bg","#111");
-    root.style.setProperty("--card","#191d1b");
-    root.style.setProperty("--text","#f1f5f2");
-    root.style.setProperty("--muted","#aab7af");
-    root.style.setProperty("--border","#2b3730");
-    root.style.setProperty("--soft","#20342a");
-
-  }else{
-
-    root.style.setProperty("--bg","#f7faf8");
-    root.style.setProperty("--card","#ffffff");
-    root.style.setProperty("--text","#17231d");
-    root.style.setProperty("--muted","#718078");
-    root.style.setProperty("--border","#e1ebe5");
-    root.style.setProperty("--soft","#e9f3ed");
+    plan.push("🌱 Complete one habit");
 
   }
 
+  if(data.goals.length){
+
+    plan.push(
+      "🎯 Take one small step toward a goal"
+    );
+
+  }
+
+  if(data.tasks.some(x=>!x.done)){
+
+    plan.push(
+      "📚 Complete one study task"
+    );
+
+  }
+
+  if(!data.moods.length){
+
+    plan.push(
+      "💜 Check in with yourself"
+    );
+
+  }
+
+  if(!plan.length){
+
+    plan.push(
+      "🌷 You have done enough for today. Rest."
+    );
+
+  }
+
+  container.innerHTML =
+    plan.map(item=>`
+
+      <div class="goal">
+        ${item}
+      </div>
+
+    `).join("");
+
 }
 
+/* =========================
+   CALCULATIONS
+========================= */
+
+function calculateGoalProgress(){
+
+  if(!data.goals.length)return 0;
+
+  return Math.round(
+    data.goals.reduce(
+      (sum,g)=>sum+g.progress,
+      0
+    ) / data.goals.length
+  );
+
+}
+
+function calculateHabitProgress(){
+
+  if(!data.habits.length)return 0;
+
+  return Math.round(
+    data.habits.filter(x=>x.done).length /
+    data.habits.length * 100
+  );
+
+}
+
+function calculateStudyProgress(){
+
+  if(!data.tasks.length)return 0;
+
+  return Math.round(
+    data.tasks.filter(x=>x.done).length /
+    data.tasks.length * 100
+  );
+
+}
 
 /* =========================
-   SECURITY / TEXT
+   CUSTOM SCHOLARSHIP
 ========================= */
+
+function openAddScholarship(){
+
+  document
+    .getElementById("addScholarshipModal")
+    .classList.add("show");
+
+}
+
+function addCustomScholarship(){
+
+  const name =
+    document.getElementById("customScholarshipName")
+      .value.trim();
+
+  const organization =
+    document.getElementById("customScholarshipOrg")
+      .value.trim();
+
+  const country =
+    document.getElementById("customScholarshipCountry")
+      .value.trim();
+
+  const field =
+    document.getElementById("customScholarshipField")
+      .value.trim();
+
+  const deadline =
+    document.getElementById("customScholarshipDeadline")
+      .value;
+
+  const url =
+    document.getElementById("customScholarshipUrl")
+      .value.trim();
+
+  if(!name || !url){
+
+    toast("Add the scholarship name and official website.");
+
+    return;
+
+  }
+
+  data.customScholarships.push({
+
+    id:"custom_"+Date.now(),
+
+    name,
+
+    organization,
+
+    country:country || "International",
+
+    field:field || "Various",
+
+    funding:"Not specified",
+
+    level:"Not specified",
+
+    deadline,
+
+    description:"Added by you.",
+
+    url,
+
+    demo:false
+
+  });
+
+  saveData();
+
+  closeModal("addScholarshipModal");
+
+  updateUI();
+
+  toast("Scholarship added 🎓");
+
+}
+
+/* =========================
+   UTILITIES
+========================= */
+
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+function toast(message){
+
+  const element =
+    document.getElementById("toast");
+
+  element.textContent=message;
+
+  element.classList.add("show");
+
+  setTimeout(
+    ()=>element.classList.remove("show"),
+    3000
+  );
+
+}
 
 function escapeHTML(value){
 
-  return String(value)
+  return String(value || "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -2532,6 +3014,69 @@ function escapeHTML(value){
 
 }
 
+function escapeAttribute(value){
+
+  return escapeHTML(value)
+    .replaceAll("`","&#096;");
+
+}
+
+function toggleDark(){
+
+  const dark =
+    document.body.dataset.dark==="true";
+
+  if(dark){
+
+    document.body.dataset.dark="false";
+
+    document.documentElement.style.setProperty(
+      "--bg",
+      "#f8f7fb"
+    );
+
+    document.documentElement.style.setProperty(
+      "--card",
+      "#ffffff"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text",
+      "#252333"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted",
+      "#777387"
+    );
+
+  }else{
+
+    document.body.dataset.dark="true";
+
+    document.documentElement.style.setProperty(
+      "--bg",
+      "#17151d"
+    );
+
+    document.documentElement.style.setProperty(
+      "--card",
+      "#211f29"
+    );
+
+    document.documentElement.style.setProperty(
+      "--text",
+      "#f5f2fa"
+    );
+
+    document.documentElement.style.setProperty(
+      "--muted",
+      "#aaa4b8"
+    );
+
+  }
+
+}
 
 /* =========================
    UPDATE EVERYTHING
@@ -2549,20 +3094,35 @@ function updateUI(){
 
   renderScholarships();
 
-  renderApplications();
+  updateScholarshipTimestamp();
 
-  renderMoodBars();
+  renderMoodHistory();
 
   renderJournal();
 
-  updateJourney();
+  renderJourney();
+
+  renderProfile();
 
 }
 
-
 /* =========================
-   START
+   INIT
 ========================= */
+
+buildChoices();
+
+newReflection();
+
+populateScholarshipFilters();
+
+if(!data.onboardingComplete){
+
+  document
+    .getElementById("onboardingModal")
+    .classList.add("show");
+
+}
 
 updateUI();
 
